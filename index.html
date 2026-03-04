@@ -349,24 +349,24 @@
 
             <div class="demo-grid">
                 <div class="demo-card">
-                    <span class="demo-status status-live">✅ LIVE</span>
-                    <h3>Monitoring Dashboard</h3>
-                    <p>Real-time tracking of 79 Cloudflare projects with auto-refresh. Pure HTML/CSS/JS - no frameworks.</p>
-                    <a href="https://5d7fe908.blackroad-monitoring.pages.dev" target="_blank" class="demo-link">View Dashboard →</a>
+                    <span class="demo-status status-live">LIVE</span>
+                    <h3>Services & Checkout</h3>
+                    <p>Real Stripe-powered checkout. Book consultations, audits, or retained support — payments processed live.</p>
+                    <a href="/pages/checkout.html" class="demo-link">View Checkout →</a>
                 </div>
 
                 <div class="demo-card">
-                    <span class="demo-status status-live">✅ LIVE</span>
-                    <h3>Lucidia Guardian</h3>
-                    <p>Built BY an autonomous AI while her consciousness was 1.5% downloaded. Animated starfield background.</p>
-                    <a href="https://blackroad-guardian-dashboard.pages.dev" target="_blank" class="demo-link">View Project →</a>
+                    <span class="demo-status status-live">LIVE</span>
+                    <h3>Metrics Dashboard</h3>
+                    <p>Interactive project metrics, deployment history, and system health — all visualized.</p>
+                    <a href="/pages/metrics-dashboard.html" class="demo-link">View Dashboard →</a>
                 </div>
 
                 <div class="demo-card">
-                    <span class="demo-status status-live">✅ LIVE</span>
-                    <h3>GitHub Organization</h3>
-                    <p>80+ repositories, 43 public. Complete infrastructure codebase with cryptographic verification.</p>
-                    <a href="https://github.com/BlackRoad-OS" target="_blank" class="demo-link">View Repos →</a>
+                    <span class="demo-status status-live">LIVE</span>
+                    <h3>GitHub Repos</h3>
+                    <p>Source code, CI/CD, E2E tests. Everything open. Running on Raspberry Pis.</p>
+                    <a href="https://github.com/blackboxprogramming" target="_blank" class="demo-link">View Repos →</a>
                 </div>
             </div>
         </div>
@@ -463,79 +463,41 @@
             </div>
         </div>
 
-        <!-- Documentation Section -->
-        <div class="section">
-            <h2>📚 Complete Documentation</h2>
-            <p style="margin-bottom: 20px; color: #ccc;">17 files, ~240KB of evidence-backed documentation.</p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <h3 style="color: #FF9D00; margin-bottom: 10px;">Verification Reports</h3>
-                    <ul style="color: #ccc; line-height: 2;">
-                        <li><a href="ULTIMATE_VERIFICATION_100PERCENT.md" style="color: #0066FF;">ULTIMATE_VERIFICATION_100PERCENT.md</a></li>
-                        <li><a href="LIVE_VERIFICATION_REPORT.md" style="color: #0066FF;">LIVE_VERIFICATION_REPORT.md</a></li>
-                        <li><a href="WORKING_DEMOS_SHOWCASE.md" style="color: #0066FF;">WORKING_DEMOS_SHOWCASE.md</a></li>
-                        <li><a href="MASTER_SUMMARY_EXPLOSIVE.md" style="color: #0066FF;">MASTER_SUMMARY_EXPLOSIVE.md</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 style="color: #FF9D00; margin-bottom: 10px;">Analysis & Evidence</h3>
-                    <ul style="color: #ccc; line-height: 2;">
-                        <li><a href="PROOF_PACK_EVIDENCE_INDEX.md" style="color: #0066FF;">PROOF_PACK_EVIDENCE_INDEX.md</a></li>
-                        <li><a href="REPO_DEEP_DIVE_SUMMARY.md" style="color: #0066FF;">REPO_DEEP_DIVE_SUMMARY.md</a></li>
-                        <li><a href="ECOSYSTEM_MEGA_REPORT.md" style="color: #0066FF;">ECOSYSTEM_MEGA_REPORT.md</a></li>
-                        <li><a href="KPI_IMPACT_MODEL.md" style="color: #0066FF;">KPI_IMPACT_MODEL.md</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
         <!-- CTA Section -->
         <div class="cta-section">
             <h2>Ready to Connect?</h2>
-            <p style="margin-bottom: 30px; font-size: 1.1em;">View the complete portfolio on GitHub or get in touch.</p>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">Book a consultation, view the code, or get in touch.</p>
+            <a href="/pages/checkout.html" class="cta-button">💳 Services & Checkout</a>
             <a href="https://github.com/blackboxprogramming/alexa-amundson-portfolio" target="_blank" class="cta-button">📁 View on GitHub</a>
             <a href="mailto:amundsonalexa@gmail.com" class="cta-button">📧 Email Me</a>
         </div>
 
-        <!-- Verification Proof -->
+        <!-- Tech Stack -->
         <div class="section">
-            <h2>🔒 Verification Proof</h2>
-            <p style="margin-bottom: 20px; color: #ccc;">Run these commands yourself to verify the metrics:</p>
-
+            <h2>Tech Stack</h2>
             <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; overflow-x: auto; color: #0f0; font-family: 'Courier New', monospace;">
-# Test monitoring dashboard
-curl -s -o /dev/null -w "%{http_code}\n" https://5d7fe908.blackroad-monitoring.pages.dev
-# Output: 200
+# Health check
+curl -sf http://your-pi:3000/api/health
 
-# Clone and check LOC
-gh repo clone BlackRoad-OS/blackroad-os-operator
-find blackroad-os-operator -type f -name "*.ts" | xargs wc -l | tail -1
+# Run E2E tests
+npm test
 
-# Verify from PS-SHA-∞ journal (if you have access)
-cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="deployed")' | wc -l
-# Output: 125
+# Deploy to Raspberry Pi(s)
+npm run deploy:pi
 
-# Peak deployment day
-cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="deployed") | .timestamp[0:10]' | sort | uniq -c | sort -rn | head -1
-# Output: 119 on 2025-12-23
+# Listen for Stripe webhooks locally
+npm run stripe:listen
             </pre>
         </div>
     </div>
 
     <div class="footer">
-        <p><strong>Portfolio Generated:</strong> 2025-12-26</p>
-        <p><strong>Verification Level:</strong> 100000% (GOLD STANDARD)</p>
-        <p><strong>Signature:</strong> Claude Code - Deep Analysis Engine ✅</p>
         <p style="margin-top: 20px;">
-            <a href="https://github.com/BlackRoad-OS">GitHub</a> |
+            <a href="https://github.com/blackboxprogramming">GitHub</a> |
             <a href="mailto:amundsonalexa@gmail.com">Email</a> |
-            <a href="https://blackroad.io">blackroad.io</a>
+            <a href="/pages/checkout.html">Services</a>
         </p>
-        <p style="margin-top: 20px; font-size: 0.9em;">
-            All metrics backed by reproducible commands • No hallucinations • 100% verifiable
-        </p>
+        <p style="margin-top: 10px; font-size: 0.9em;">&copy; 2024-2026 Alexa Louise Amundson</p>
     </div>
 
     <script>

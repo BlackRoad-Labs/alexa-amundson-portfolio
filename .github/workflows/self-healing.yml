@@ -78,8 +78,8 @@ jobs:
         run: |
           npm update
           if [ -n "$(git status --porcelain)" ]; then
-            git config user.name "BlackRoad Bot"
-            git config user.email "bot@blackroad.io"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add package*.json
             git commit -m "chore: auto-update dependencies"
             git push
