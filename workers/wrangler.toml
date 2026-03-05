@@ -1,0 +1,16 @@
+name = "portfolio-worker"
+main = "portfolio-worker.js"
+compatibility_date = "2025-12-01"
+
+# Scheduled triggers for health monitoring
+[triggers]
+crons = ["*/30 * * * *"]  # Every 30 minutes
+
+# KV namespace for caching health check results
+# Bind after creating: wrangler kv namespace create PORTFOLIO_KV
+# [[kv_namespaces]]
+# binding = "PORTFOLIO_KV"
+# id = "<your-kv-namespace-id>"
+
+[observability]
+enabled = true

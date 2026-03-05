@@ -1,0 +1,39 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'workers/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-worker:
+    name: Deploy Portfolio Worker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: workers
+          command: deploy
+
+      - name: Verify Worker
+        run: |
+          sleep 10
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://portfolio-worker.${{ secrets.CLOUDFLARE_SUBDOMAIN }}.workers.dev/api/status" || echo "000")
+          echo "Worker status: HTTP $STATUS"
+          if [ "$STATUS" = "200" ]; then
+            echo "Worker deployed and responding!"
+          else
+            echo "Worker may still be propagating (status: $STATUS)"
+          fi

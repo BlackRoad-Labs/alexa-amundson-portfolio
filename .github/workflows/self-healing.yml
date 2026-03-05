@@ -1,86 +1,96 @@
-name: 🔧 Self-Healing
+name: Self-Healing Monitor
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Every 30 minutes
+    - cron: '0 */6 * * *'  # Every 6 hours
   workflow_dispatch:
   workflow_run:
-    workflows: ["🚀 Auto Deploy"]
+    workflows: ["Auto Deploy", "Deploy to Cloudflare Pages"]
     types: [completed]
+
+permissions:
+  contents: read
+  issues: write
 
 jobs:
   monitor:
     name: Monitor Deployments
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Check Health
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Check Deployment Health
         id: health
         run: |
-          if [ ! -z "${{ secrets.DEPLOY_URL }}" ]; then
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.DEPLOY_URL }}/api/health || echo "000")
-            echo "status=$STATUS" >> $GITHUB_OUTPUT
-          else
+          DEPLOY_URL="${{ secrets.DEPLOY_URL }}"
+          if [ -z "$DEPLOY_URL" ]; then
             echo "status=skip" >> $GITHUB_OUTPUT
+            echo "No DEPLOY_URL configured, skipping health check"
+            exit 0
           fi
-      
-      - name: Auto-Rollback
-        if: steps.health.outputs.status != '200' && steps.health.outputs.status != 'skip'
+
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "$DEPLOY_URL" || echo "000")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "Health check for $DEPLOY_URL: HTTP $STATUS"
+
+      - name: Check HTML Files Integrity
         run: |
-          echo "🚨 Health check failed (Status: ${{ steps.health.outputs.status }})"
-          echo "Triggering rollback..."
-          gh workflow run auto-deploy.yml --ref $(git rev-parse HEAD~1)
-        env:
-          GH_TOKEN: ${{ github.token }}
-      
-      - name: Attempt Auto-Fix
-        if: steps.health.outputs.status != '200' && steps.health.outputs.status != 'skip'
-        run: |
-          echo "🔧 Attempting automatic fixes..."
-          # Check for common issues
-          if [ -f "package.json" ]; then
-            npm ci || true
-            npm run build || true
+          echo "Verifying local HTML files..."
+          ERRORS=0
+          for file in $(find . -name "*.html" -not -path "./.git/*"); do
+            if [ ! -s "$file" ]; then
+              echo "  [ERROR] $file is empty"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  [OK] $file ($(wc -c < "$file") bytes)"
+            fi
+          done
+
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "Found $ERRORS empty HTML files"
+            exit 1
           fi
-      
-      - name: Create Issue on Failure
-        if: failure()
-        uses: actions/github-script@v7
+          echo "All HTML files verified."
+
+      - name: Verify Links in index.html
+        run: |
+          echo "Checking internal links in index.html..."
+          BROKEN=0
+          for link in $(grep -oP 'href="(?!http|mailto|#)([^"]+)"' index.html | sed 's/href="//;s/"//'); do
+            if [ ! -f "$link" ]; then
+              echo "  [BROKEN] $link"
+              BROKEN=$((BROKEN + 1))
+            else
+              echo "  [OK] $link"
+            fi
+          done
+
+          if [ "$BROKEN" -gt 0 ]; then
+            echo "Found $BROKEN broken internal links"
+          else
+            echo "All internal links valid."
+          fi
+
+      - name: Create Issue on Health Failure
+        if: steps.health.outputs.status != '200' && steps.health.outputs.status != 'skip' && steps.health.outputs.status != ''
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
-            github.rest.issues.create({
+            const issues = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '🚨 Self-Healing: Deployment Health Check Failed',
-              body: `Deployment health check failed.\n\nStatus: ${{ steps.health.outputs.status }}\nWorkflow: ${context.workflow}\nRun: ${context.runId}`,
-              labels: ['bug', 'deployment', 'auto-generated']
-            })
-
-  dependency-updates:
-    name: Auto Update Dependencies
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Setup Node
-        if: hashFiles('package.json') != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      
-      - name: Update npm dependencies
-        if: hashFiles('package.json') != ''
-        run: |
-          npm update
-          if [ -n "$(git status --porcelain)" ]; then
-            git config user.name "BlackRoad Bot"
-            git config user.email "bot@blackroad.io"
-            git add package*.json
-            git commit -m "chore: auto-update dependencies"
-            git push
-          fi
+              state: 'open',
+              labels: 'deployment-health'
+            });
+            // Only create if no existing open health issue
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'Deployment Health Check Failed',
+                body: `Health check returned HTTP ${{ steps.health.outputs.status }}.\n\nWorkflow: ${context.workflow}\nRun: ${context.runId}\nTime: ${new Date().toISOString()}`,
+                labels: ['deployment-health', 'automated']
+              });
+            }
