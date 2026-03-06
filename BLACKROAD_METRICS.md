@@ -7,9 +7,9 @@
 
 ## Executive Summary
 
-**4608051 lines of code** orchestrated across **73 repositories** through AI direction alone.
+**899,160+ lines of code** orchestrated across **113 repositories** through AI direction alone.
 
-- **73 GitHub repositories** (97 MB)
+- **113 GitHub repositories** (97 MB)
 - **1723 files** indexed locally
 - **140 automation scripts** (573 functions)
 - **No traditional programming** - 100% AI orchestration
@@ -20,7 +20,7 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Repositories | 73 |
+| Total Repositories | 113 |
 | Total Size | 97 MB |
 | Organizations | 15 (BlackRoad-OS, BlackRoad-AI, +13) |
 | Primary Language | HTML (56 repos) |
@@ -49,9 +49,11 @@
 | Metric | Value |
 |--------|-------|
 | Total Files | 1723 |
-| Total Lines | 4586005 |
+| Total Lines | 899,160 |
 | Repositories Analyzed | 3 (blackroad-os-core, blackroad-os-operator, blackroad-os-agents) |
 | Largest File | agents-30k.json (3.3M lines) |
+
+> **Note:** Total Lines counts source code only (Python, TypeScript, Shell, HTML, YAML, Markdown, etc.). Large generated JSON data files (e.g., agents-30k.json) are excluded from the source code line count.
 
 ### File Type Distribution
 
@@ -109,8 +111,8 @@
 ## Impact Metrics
 
 ### Scale
-- **4.6 million lines** of code directed
-- **73 repositories** managed
+- **899,160+** lines of code directed
+- **113 repositories** managed
 - **140 automation scripts** created
 - **573 functions** defined
 
@@ -141,7 +143,7 @@
 
 ## Resume Highlights
 
-**"Orchestrated 4.6M+ lines of code across 73 repositories through AI direction"**
+**"Orchestrated 899,160+ lines of code across 113 repositories through AI direction"**
 
 **"Created 140 automation scripts (22K lines, 573 functions) for multi-cloud deployment"**
 
