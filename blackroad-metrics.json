@@ -1,14 +1,15 @@
 {
-  "generated_at": "2025-12-24T00:42:37Z",
+  "generated_at": "2026-03-06T00:00:00Z",
+  "last_updated": "2026-03-06T00:00:00Z",
   "summary": {
-    "total_code_lines": 4608051,
-    "repositories": 73,
+    "total_code_lines": 899160,
+    "repositories": 113,
     "files": 1723,
     "scripts": 140,
     "size_mb": 97
   },
   "github": {
-    "total_repos": 73,
+    "total_repos": 113,
     "total_size_mb": 97,
     "organizations": 15,
     "languages": {
@@ -20,7 +21,7 @@
   },
   "codebase": {
     "total_files": 1723,
-    "total_lines": 4586005,
+    "total_lines": 899160,
     "repositories_analyzed": 3
   },
   "automation": {
@@ -29,6 +30,13 @@
     "total_functions": 573,
     "avg_lines_per_script": 157,
     "avg_functions_per_script": 4
+  },
+  "deployments": {
+    "total": 125,
+    "success_rate": "100%",
+    "peak_24h": 119,
+    "peak_date": "2025-12-23T00:00:00Z",
+    "cloudflare_projects": 79
   },
   "impact": {
     "speed_multiplier": "10-15x",
