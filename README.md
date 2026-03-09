@@ -14,6 +14,12 @@ I bring quantitative analysis from regulated finance and production-grade infras
 
 ---
 
+## The Story
+
+**[Read the full story](THE_STORY.md)** — how I went from coding on an iPhone to 1,326 repos in 9 months, verified from git history.
+
+---
+
 ## Resume Variants
 
 | Role Target | File |
