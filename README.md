@@ -33,6 +33,9 @@ I bring quantitative analysis from regulated finance and production-grade infras
 | **[Edge AI Inference on ARM](PAPER_EDGE_AI_INFERENCE.md)** | Benchmarking 29 LLMs on Pi 5 — token throughput, latency, code generation quality, thermal analysis |
 | **[Distributed Mesh Networking](PAPER_DISTRIBUTED_MESH.md)** | 6-node production architecture — WireGuard, Cloudflare edge, Gitea, failure modes, 9 months of operational data |
 | **[Quantum & Computational Experiments](PAPER_QUANTUM_EXPERIMENTS.md)** | 11 experiments on NVMe — Riemann visualization, fine-structure constant, multi-node quantum simulation |
+| **[The Trivial Zero (94-Section Paper)](PAPER_SIMULATION_THEORY.md)** | Computational philosophy — SHA-256 witness, Gödelian incompleteness, ternary logic, QWERTY encoding, 11 proofs + 12 equation sets |
+| **[Research Portfolio (30+ Papers)](PAPER_RESEARCH_PORTFOLIO.md)** | Index of all research across 8 repos — agent architecture, DNA codon algebra, consciousness equations, PS-SHA-infinity |
+| **[Distributed Verification Results](PAPER_VERIFICATION_RESULTS.md)** | 25 mathematical claims verified live across 3 Pi nodes — 24 confirmed, 1 corrected |
 
 ---
 
