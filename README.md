@@ -52,21 +52,27 @@ I bring quantitative analysis from regulated finance and production-grade infras
 
 ## Infrastructure at a Glance
 
-| Metric | Scale |
-|--------|-------|
-| Compute nodes | 6 (4 Raspberry Pi + 2 cloud VPS) |
-| AI models deployed | 29 (4 custom fine-tuned) |
-| Neural accelerator throughput | 52 TOPS (2x Hailo-8) |
-| Cloudflare Workers | 130+ |
-| Cloudflare Pages | 95+ |
-| Custom domains | 48+ |
-| Docker configs | 100+ Dockerfiles, 35+ Compose |
-| Node.js projects | 240+ |
-| Shell scripts | 400+ |
-| GitHub repositories | 1,326+ (107 personal + 1,218 BlackRoad-OS org) |
-| Self-hosted Gitea repos | 100+ across 7 orgs |
-| Distributed storage | 1.25TB+ |
-| Task queue capacity | 16,100 messages / 4 queue types |
+| Metric | Scale | Verified |
+|--------|-------|----------|
+| Lines of source code | 4.1M (TS/JS/Python/Shell) | `wc -l`, venvs excluded |
+| Total with docs/HTML | 4.5M | `wc -l` |
+| GitHub repos | 1,370+ across 5 orgs | GitHub API |
+| GitHub contributions (past year) | 46,116 | Contribution calendar |
+| Longest commit streak | 273 days | Contribution calendar |
+| Pull requests authored | 4,323 | GitHub API |
+| Compute nodes | 6 (4 Pi + 2 cloud VPS) | SSH verified |
+| AI models deployed | 29 (4 custom fine-tuned) | Ollama API |
+| Neural accelerator throughput | 52 TOPS (2x Hailo-8) | Hardware verified |
+| Cloudflare Workers | 130+ | Wrangler |
+| Cloudflare Pages | 95+ | Wrangler |
+| Custom domains | 48+ | DNS verified |
+| Docker configs | 100+ Dockerfiles, 35+ Compose | Filesystem |
+| Self-hosted Gitea repos | 100+ across 7 orgs | Gitea API |
+| Distributed storage | 1.25TB+ | `df` |
+| Agent types defined | 189 | Source code |
+| GitHub Actions workflows | 2,400+ | Repository scan |
+| Test files | 1,282+ | Repository scan |
+| USPTO trademarks filed | 3 | USPTO |
 
 ---
 
