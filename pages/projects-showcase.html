@@ -439,24 +439,24 @@
                         <div class="stat-label">Pages Projects</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">16</div>
+                        <div class="stat-number" data-live="true" id="ps-cf-dns">20</div>
                         <div class="stat-label">DNS Zones</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-live="true" id="ps-cf-workers">490</div>
+                        <div class="stat-label">Workers</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">$0</div>
                         <div class="stat-label">Monthly Cost</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">&lt;50ms</div>
-                        <div class="stat-label">Latency</div>
-                    </div>
                 </div>
 
                 <div class="project-tech">
                     <span class="tech-badge">Cloudflare Pages</span>
-                    <span class="tech-badge">Workers</span>
-                    <span class="tech-badge">KV</span>
-                    <span class="tech-badge">D1</span>
+                    <span class="tech-badge" data-live="true" id="ps-tech-workers">Workers (490)</span>
+                    <span class="tech-badge" data-live="true" id="ps-tech-kv">KV (20)</span>
+                    <span class="tech-badge" data-live="true" id="ps-tech-d1">D1 (18)</span>
                 </div>
 
                 <div class="project-links">
@@ -477,16 +477,16 @@
 
                 <div class="project-stats">
                     <div class="stat-item">
-                        <div class="stat-number">4</div>
-                        <div class="stat-label">Pi Nodes</div>
+                        <div class="stat-number" data-live="true" id="ps-pi-nodes">3</div>
+                        <div class="stat-label">Pi Nodes Online</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">$500</div>
                         <div class="stat-label">One-time</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">8ms</div>
-                        <div class="stat-label">Latency</div>
+                        <div class="stat-number" data-live="true" id="ps-pi-latency">8ms</div>
+                        <div class="stat-label">Avg Latency</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">24/7</div>
@@ -613,8 +613,8 @@
 
     <script>
     (function() {
-        const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/';
-        const CACHE_KEY = 'portfolio-stats-cache';
+        const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/space';
+        const CACHE_KEY = 'portfolio-space-cache';
         const CACHE_TTL = 30 * 60 * 1000;
 
         function formatNum(n) { return Number(n).toLocaleString(); }
@@ -646,49 +646,93 @@
         }
 
         function applyLiveData(data) {
-            var s = data.summary || {};
+            var t = data.totals || {};
             var gh = data.github || {};
             var cf = data.cloudflare || {};
+            var fleet = (data.fleet || {}).mesh_latency || {};
+            var ai = data.ai || {};
+            var gitea = data.gitea || {};
             var el;
 
             // Hero stats
             el = document.getElementById('ps-hero-repos');
-            if (el && s.repos) { el.textContent = formatNum(s.repos) + '+'; addLiveDot(el); }
+            if (el && t.github_repos) { el.textContent = formatNum(t.github_repos) + '+'; addLiveDot(el); }
             removeShimmer(el);
 
             el = document.getElementById('ps-hero-loc');
-            if (el && s.estimated_loc) { el.textContent = formatNum(s.estimated_loc) + '+'; addLiveDot(el); }
+            if (el && t.estimated_loc) { el.textContent = formatNum(t.estimated_loc) + '+'; addLiveDot(el); }
             removeShimmer(el);
 
             el = document.getElementById('ps-hero-projects');
-            if (el && s.cloudflare_projects) { el.textContent = formatNum(s.cloudflare_projects); addLiveDot(el); }
+            if (el && t.cloudflare_projects) { el.textContent = formatNum(t.cloudflare_projects); addLiveDot(el); }
             removeShimmer(el);
 
-            // Cloudflare card
+            // Cloudflare card description
             el = document.getElementById('ps-cf-desc');
-            if (el && s.cloudflare_projects) { el.textContent = formatNum(s.cloudflare_projects); }
+            if (el && t.cloudflare_projects) { el.textContent = formatNum(t.cloudflare_projects); }
             removeShimmer(el);
 
             el = document.getElementById('ps-cf-pages');
-            if (el && s.cloudflare_projects) { el.textContent = formatNum(s.cloudflare_projects); addLiveDot(el); }
+            if (el && t.cloudflare_projects) { el.textContent = formatNum(t.cloudflare_projects); addLiveDot(el); }
+            removeShimmer(el);
+
+            // Cloudflare card: Workers/KV/D1 counts
+            el = document.getElementById('ps-cf-workers');
+            if (el && cf.workers) { el.textContent = formatNum(cf.workers); addLiveDot(el); }
+            removeShimmer(el);
+
+            el = document.getElementById('ps-cf-dns');
+            if (el && cf.dns_zones) { el.textContent = formatNum(cf.dns_zones); addLiveDot(el); }
+            removeShimmer(el);
+
+            // Pi Mesh card live data
+            el = document.getElementById('ps-pi-nodes');
+            if (el && t.pi_nodes != null) { el.textContent = formatNum(t.pi_nodes); addLiveDot(el); }
+            removeShimmer(el);
+
+            el = document.getElementById('ps-pi-latency');
+            if (el && Object.keys(fleet).length > 0) {
+                var latencies = [];
+                Object.keys(fleet).forEach(function(name) {
+                    if (fleet[name].reachable && fleet[name].latency_ms != null) latencies.push(fleet[name].latency_ms);
+                });
+                if (latencies.length > 0) {
+                    var avg = latencies.reduce(function(a,b){return a+b;},0) / latencies.length;
+                    el.textContent = avg.toFixed(0) + 'ms';
+                }
+            }
             removeShimmer(el);
 
             // Tech badge
             el = document.getElementById('ps-tech-cf');
-            if (el && s.cloudflare_projects) { el.textContent = 'Cloudflare Pages (' + formatNum(s.cloudflare_projects) + ' projects)'; }
+            if (el && t.cloudflare_projects) { el.textContent = 'Cloudflare Pages (' + formatNum(t.cloudflare_projects) + ' projects)'; }
+            removeShimmer(el);
+
+            el = document.getElementById('ps-tech-workers');
+            if (el && cf.workers) { el.textContent = 'Workers (' + formatNum(cf.workers) + ')'; }
+            removeShimmer(el);
+
+            el = document.getElementById('ps-tech-kv');
+            if (el && cf.kv_namespaces) { el.textContent = 'KV (' + formatNum(cf.kv_namespaces) + ')'; }
+            removeShimmer(el);
+
+            el = document.getElementById('ps-tech-d1');
+            if (el && cf.d1_databases) { el.textContent = 'D1 (' + formatNum(cf.d1_databases) + ')'; }
             removeShimmer(el);
 
             // Bottom section
             el = document.getElementById('ps-bottom-stats');
-            if (el && s.repos && s.orgs) {
-                el.textContent = formatNum(s.repos) + '+ repositories across ' + s.orgs + ' GitHub organizations';
+            if (el && t.github_repos && t.github_orgs) {
+                var giteaText = gitea.repo_count ? ' + ' + formatNum(gitea.repo_count) + ' Gitea repos' : '';
+                el.textContent = formatNum(t.github_repos) + '+ repositories across ' + t.github_orgs + ' GitHub organizations' + giteaText;
                 addLiveDot(el);
             }
             removeShimmer(el);
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
-            var ids = ['ps-hero-repos','ps-hero-loc','ps-hero-projects','ps-cf-desc','ps-cf-pages','ps-tech-cf','ps-bottom-stats'];
+            var ids = ['ps-hero-repos','ps-hero-loc','ps-hero-projects','ps-cf-desc','ps-cf-pages','ps-tech-cf','ps-bottom-stats',
+                       'ps-cf-workers','ps-cf-dns','ps-pi-nodes','ps-pi-latency','ps-tech-workers','ps-tech-kv','ps-tech-d1'];
             ids.forEach(function(id) { addShimmer(document.getElementById(id)); });
 
             try {

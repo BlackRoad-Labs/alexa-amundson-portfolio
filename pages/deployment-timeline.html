@@ -487,7 +487,7 @@
 
         <div class="live-stats-footer" id="dt-live-footer" style="display:none;">
             <div style="width:100%; text-align:center; margin-bottom:10px; font-size:0.85em; color:#00ff88;">
-                <span class="live-dot-small"></span> CURRENT STATS (LIVE)
+                <span class="live-dot-small"></span> FLEET CONSTELLATION (LIVE)
             </div>
             <div class="ls-item">
                 <div class="ls-value" id="dt-live-repos">--</div>
@@ -499,15 +499,43 @@
             </div>
             <div class="ls-item">
                 <div class="ls-value" id="dt-live-projects">--</div>
-                <div class="ls-label">Cloudflare Projects</div>
+                <div class="ls-label">CF Projects</div>
             </div>
             <div class="ls-item">
-                <div class="ls-value" id="dt-live-domains">--</div>
-                <div class="ls-label">Domains</div>
+                <div class="ls-value" id="dt-live-workers">--</div>
+                <div class="ls-label">Workers</div>
             </div>
             <div class="ls-item">
-                <div class="ls-value" id="dt-live-orgs">--</div>
-                <div class="ls-label">GitHub Orgs</div>
+                <div class="ls-value" id="dt-live-kv">--</div>
+                <div class="ls-label">KV</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-d1">--</div>
+                <div class="ls-label">D1</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-r2">--</div>
+                <div class="ls-label">R2</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-dns">--</div>
+                <div class="ls-label">DNS Zones</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-ollama">--</div>
+                <div class="ls-label">Ollama Models</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-hailo">--</div>
+                <div class="ls-label">Hailo TOPS</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-pis">--</div>
+                <div class="ls-label">Pi Nodes</div>
+            </div>
+            <div class="ls-item">
+                <div class="ls-value" id="dt-live-gitea">--</div>
+                <div class="ls-label">Gitea Repos</div>
             </div>
         </div>
 
@@ -525,8 +553,8 @@
         document.getElementById('timestamp').textContent = new Date().toLocaleString();
 
         (function() {
-            const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/';
-            const CACHE_KEY = 'portfolio-stats-cache';
+            const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/space';
+            const CACHE_KEY = 'portfolio-space-cache';
             const CACHE_TTL = 30 * 60 * 1000;
 
             function formatNum(n) { return Number(n).toLocaleString(); }
@@ -546,17 +574,33 @@
                 return data;
             }
 
+            function setVal(id, val) {
+                var el = document.getElementById(id);
+                if (el && val != null) el.textContent = typeof val === 'number' ? formatNum(val) : val;
+            }
+
             document.addEventListener('DOMContentLoaded', async function() {
                 try {
                     var data = await fetchStats();
-                    var s = data.summary || {};
+                    var t = data.totals || {};
                     var cf = data.cloudflare || {};
+                    var ai = data.ai || {};
+                    var gitea = data.gitea || {};
+                    var ollama = ai.ollama || {};
+                    var hailo = ai.hailo || {};
 
-                    document.getElementById('dt-live-repos').textContent = formatNum(s.repos || 0) + '+';
-                    document.getElementById('dt-live-loc').textContent = formatNum(s.estimated_loc || 0) + '+';
-                    document.getElementById('dt-live-projects').textContent = formatNum(s.cloudflare_projects || 0);
-                    document.getElementById('dt-live-domains').textContent = formatNum(cf.total_domains || s.cloudflare_domains || 0);
-                    document.getElementById('dt-live-orgs').textContent = formatNum(s.orgs || 0);
+                    setVal('dt-live-repos', formatNum(t.github_repos || 0) + '+');
+                    setVal('dt-live-loc', formatNum(t.estimated_loc || 0) + '+');
+                    setVal('dt-live-projects', t.cloudflare_projects || 0);
+                    setVal('dt-live-workers', cf.workers || t.cloudflare_workers || 0);
+                    setVal('dt-live-kv', cf.kv_namespaces || t.cloudflare_kv || 0);
+                    setVal('dt-live-d1', cf.d1_databases || t.cloudflare_d1 || 0);
+                    setVal('dt-live-r2', cf.r2_buckets || t.cloudflare_r2 || 0);
+                    setVal('dt-live-dns', cf.dns_zones || t.dns_zones || 0);
+                    setVal('dt-live-ollama', ollama.total_models || t.ollama_models || 0);
+                    setVal('dt-live-hailo', (hailo.total_tops || t.hailo_tops || 0) + ' TOPS');
+                    setVal('dt-live-pis', t.pi_nodes || 0);
+                    setVal('dt-live-gitea', gitea.repo_count || t.gitea_repos || 0);
 
                     document.getElementById('dt-live-footer').style.display = 'flex';
                     document.getElementById('dt-live-footer').style.flexWrap = 'wrap';

@@ -314,6 +314,105 @@
             color: #FF0066;
         }
 
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .fleet-node {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .fleet-node:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0,255,136,0.2);
+        }
+
+        .fleet-node .node-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #FF9D00;
+            margin-bottom: 8px;
+        }
+
+        .fleet-node .node-status {
+            font-size: 0.85em;
+            padding: 3px 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .fleet-node .node-status.online {
+            background: rgba(0,255,0,0.15);
+            color: #00ff88;
+            border: 1px solid rgba(0,255,0,0.3);
+        }
+
+        .fleet-node .node-status.offline {
+            background: rgba(255,0,0,0.15);
+            color: #ff4444;
+            border: 1px solid rgba(255,0,0,0.3);
+        }
+
+        .fleet-node .node-latency {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+
+        .fleet-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .fleet-resource {
+            background: rgba(119,0,255,0.1);
+            border: 1px solid rgba(119,0,255,0.3);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .fleet-resource .res-value {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #0066FF;
+        }
+
+        .fleet-resource .res-label {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .edge-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,102,255,0.15);
+            border: 1px solid rgba(0,102,255,0.4);
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #4da6ff;
+            margin-left: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .edge-badge.visible {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -348,7 +447,7 @@
     <div class="container">
         <!-- Metrics Section -->
         <div class="section">
-            <h2>💎 Verified Metrics <span class="live-section-badge" id="live-badge"><span class="live-dot"></span> Live data</span></h2>
+            <h2>💎 Verified Metrics <span class="live-section-badge" id="live-badge"><span class="live-dot"></span> Live data</span> <span class="edge-badge" id="edge-badge"></span></h2>
             <p style="margin-bottom: 20px; color: #ccc;">Every number backed by reproducible commands. No estimates, no hallucinations.</p>
 
             <div class="metrics-grid">
@@ -399,6 +498,30 @@
                     <div class="metric-label">Monthly Cost</div>
                     <div class="metric-verify">Cloudflare free tier</div>
                 </div>
+
+                <div class="metric-card">
+                    <div class="metric-number" data-live="true" id="metric-workers">490</div>
+                    <div class="metric-label">Cloudflare Workers</div>
+                    <div class="metric-verify">Edge compute</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number" data-live="true" id="metric-hailo">52 TOPS</div>
+                    <div class="metric-label">Hailo-8 AI</div>
+                    <div class="metric-verify">2x accelerators</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number" data-live="true" id="metric-ollama">13</div>
+                    <div class="metric-label">Ollama Models</div>
+                    <div class="metric-verify">Local inference</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number" data-live="true" id="metric-dns">20</div>
+                    <div class="metric-label">DNS Zones</div>
+                    <div class="metric-verify">Cloudflare managed</div>
+                </div>
             </div>
         </div>
 
@@ -429,6 +552,65 @@
                     <a href="https://github.com/BlackRoad-OS" target="_blank" class="demo-link">View Repos →</a>
                 </div>
             </div>
+        </div>
+
+        <!-- Infrastructure Fleet Section -->
+        <div class="section" id="fleet-section" style="display:none;">
+            <h2>🛰 Infrastructure Fleet <span class="live-section-badge" id="fleet-live-badge"><span class="live-dot"></span> Live data</span></h2>
+            <p style="margin-bottom: 20px; color: #ccc;">Real-time mesh status from the constellation API.</p>
+
+            <h3 style="color: #FF9D00; margin-bottom: 12px;">Pi Mesh Nodes</h3>
+            <div class="fleet-grid" id="fleet-nodes"></div>
+
+            <h3 style="color: #FF9D00; margin: 20px 0 12px;">Cloudflare Resources</h3>
+            <div class="fleet-resources" id="fleet-cf-resources">
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-workers">490</div>
+                    <div class="res-label">Workers</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-kv">20</div>
+                    <div class="res-label">KV Namespaces</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-d1">18</div>
+                    <div class="res-label">D1 Databases</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-r2">10</div>
+                    <div class="res-label">R2 Buckets</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-domains">130</div>
+                    <div class="res-label">Domains</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-dns">20</div>
+                    <div class="res-label">DNS Zones</div>
+                </div>
+            </div>
+
+            <h3 style="color: #FF9D00; margin: 20px 0 12px;">AI &amp; Edge</h3>
+            <div class="fleet-resources">
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-ollama-models">13</div>
+                    <div class="res-label">Ollama Models</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-ollama-size">24.69 GB</div>
+                    <div class="res-label">Model Size</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-hailo">52</div>
+                    <div class="res-label">Hailo TOPS</div>
+                </div>
+                <div class="fleet-resource">
+                    <div class="res-value" id="fleet-gitea">50</div>
+                    <div class="res-label">Gitea Repos</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 15px; font-size: 0.85em; color: #666;" id="fleet-edge-info"></p>
         </div>
 
         <!-- Resume Variants Section -->
@@ -635,8 +817,8 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
 
     <script>
     (function() {
-        const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/';
-        const CACHE_KEY = 'portfolio-stats-cache';
+        const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/space';
+        const CACHE_KEY = 'portfolio-space-cache';
         const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
         function formatNum(n) {
@@ -660,7 +842,6 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
         }
 
         async function fetchStats() {
-            // Check sessionStorage cache
             const cached = sessionStorage.getItem(CACHE_KEY);
             if (cached) {
                 try {
@@ -680,58 +861,81 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
         }
 
         function applyLiveData(data) {
-            const s = data.summary || {};
+            const t = data.totals || {};
             const gh = data.github || {};
             const cf = data.cloudflare || {};
+            const edge = data._edge || {};
+            const fleet = (data.fleet || {}).mesh_latency || {};
+            const ai = data.ai || {};
+            const gitea = data.gitea || {};
 
             // Badge: LOC
             const badgeLoc = document.getElementById('badge-loc');
-            if (badgeLoc && s.estimated_loc) {
-                badgeLoc.textContent = formatNum(s.estimated_loc) + '+ Lines of Code';
+            if (badgeLoc && t.estimated_loc) {
+                badgeLoc.textContent = formatNum(t.estimated_loc) + '+ Lines of Code';
                 addLiveDot(badgeLoc);
             }
             removeShimmer(badgeLoc);
 
             // Badge: Projects
             const badgeProj = document.getElementById('badge-projects');
-            if (badgeProj && s.cloudflare_projects) {
-                badgeProj.textContent = formatNum(s.cloudflare_projects) + ' Live Projects';
+            if (badgeProj && t.cloudflare_projects) {
+                badgeProj.textContent = formatNum(t.cloudflare_projects) + ' Live Projects';
                 addLiveDot(badgeProj);
             }
             removeShimmer(badgeProj);
 
             // Metric: LOC
             const metricLoc = document.getElementById('metric-loc');
-            if (metricLoc && s.estimated_loc) {
-                metricLoc.textContent = formatNum(s.estimated_loc) + '+';
+            if (metricLoc && t.estimated_loc) {
+                metricLoc.textContent = formatNum(t.estimated_loc) + '+';
             }
             removeShimmer(metricLoc);
 
             // Metric: Repos
             const metricRepos = document.getElementById('metric-repos');
-            if (metricRepos && s.repos) {
-                metricRepos.textContent = formatNum(s.repos) + '+';
+            if (metricRepos && t.github_repos) {
+                metricRepos.textContent = formatNum(t.github_repos) + '+';
             }
             removeShimmer(metricRepos);
 
             // Metric: Repos orgs detail
             const metricOrgs = document.getElementById('metric-repos-orgs');
-            if (metricOrgs && s.orgs) {
-                metricOrgs.textContent = s.orgs + ' GitHub orgs';
+            if (metricOrgs && t.github_orgs) {
+                metricOrgs.textContent = t.github_orgs + ' GitHub orgs';
             }
             removeShimmer(metricOrgs);
 
             // Metric: CF Projects
             const metricCf = document.getElementById('metric-cf-projects');
-            if (metricCf && s.cloudflare_projects) {
-                metricCf.textContent = formatNum(s.cloudflare_projects);
+            if (metricCf && t.cloudflare_projects) {
+                metricCf.textContent = formatNum(t.cloudflare_projects);
             }
             removeShimmer(metricCf);
+
+            // Metric: Workers
+            var el = document.getElementById('metric-workers');
+            if (el && t.cloudflare_workers) { el.textContent = formatNum(t.cloudflare_workers); }
+            removeShimmer(el);
+
+            // Metric: Hailo
+            el = document.getElementById('metric-hailo');
+            if (el && t.hailo_tops) { el.textContent = t.hailo_tops + ' TOPS'; }
+            removeShimmer(el);
+
+            // Metric: Ollama
+            el = document.getElementById('metric-ollama');
+            if (el && t.ollama_models) { el.textContent = formatNum(t.ollama_models); }
+            removeShimmer(el);
+
+            // Metric: DNS
+            el = document.getElementById('metric-dns');
+            if (el && t.dns_zones) { el.textContent = formatNum(t.dns_zones); }
+            removeShimmer(el);
 
             // Demo card: repo counts
             const demoRepos = document.getElementById('demo-repo-counts');
             if (demoRepos && gh.total_repos) {
-                const orgRepos = gh.orgs ? gh.orgs.reduce(function(a, o) { return a + (o.public_repos || 0); }, 0) : gh.public_repos;
                 demoRepos.textContent = formatNum(gh.total_repos) + '+ repositories, ' + formatNum(gh.public_repos) + ' public';
             }
             removeShimmer(demoRepos);
@@ -739,6 +943,62 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
             // Show live badge
             const liveBadge = document.getElementById('live-badge');
             if (liveBadge) liveBadge.classList.add('visible');
+
+            // Edge location badge
+            if (edge.colo) {
+                var edgeBadge = document.getElementById('edge-badge');
+                if (edgeBadge) {
+                    edgeBadge.textContent = 'Connected via ' + edge.colo + (edge.city ? ' (' + edge.city + ')' : '');
+                    edgeBadge.classList.add('visible');
+                }
+            }
+
+            // Fleet section
+            var fleetSection = document.getElementById('fleet-section');
+            if (fleetSection && Object.keys(fleet).length > 0) {
+                fleetSection.style.display = 'block';
+                var nodesContainer = document.getElementById('fleet-nodes');
+                if (nodesContainer) {
+                    nodesContainer.innerHTML = '';
+                    Object.keys(fleet).forEach(function(name) {
+                        var node = fleet[name];
+                        var div = document.createElement('div');
+                        div.className = 'fleet-node';
+                        var statusClass = node.reachable ? 'online' : 'offline';
+                        var statusText = node.reachable ? 'ONLINE' : 'OFFLINE';
+                        var latencyText = node.reachable && node.latency_ms != null ? node.latency_ms.toFixed(1) + ' ms' : '--';
+                        div.innerHTML = '<div class="node-name">' + name + '</div>' +
+                            '<div class="node-status ' + statusClass + '">' + statusText + '</div>' +
+                            '<div class="node-latency">Latency: ' + latencyText + '</div>';
+                        nodesContainer.appendChild(div);
+                    });
+                }
+
+                var fleetBadge = document.getElementById('fleet-live-badge');
+                if (fleetBadge) fleetBadge.classList.add('visible');
+            }
+
+            // Fleet CF resources
+            if (cf.workers != null) { var w = document.getElementById('fleet-workers'); if (w) w.textContent = formatNum(cf.workers); }
+            if (cf.kv_namespaces != null) { var k = document.getElementById('fleet-kv'); if (k) k.textContent = formatNum(cf.kv_namespaces); }
+            if (cf.d1_databases != null) { var d = document.getElementById('fleet-d1'); if (d) d.textContent = formatNum(cf.d1_databases); }
+            if (cf.r2_buckets != null) { var r = document.getElementById('fleet-r2'); if (r) r.textContent = formatNum(cf.r2_buckets); }
+            if (cf.total_domains != null) { var dm = document.getElementById('fleet-domains'); if (dm) dm.textContent = formatNum(cf.total_domains); }
+            if (cf.dns_zones != null) { var dz = document.getElementById('fleet-dns'); if (dz) dz.textContent = formatNum(cf.dns_zones); }
+
+            // Fleet AI & Edge
+            var ollamaData = ai.ollama || {};
+            if (ollamaData.total_models != null) { var om = document.getElementById('fleet-ollama-models'); if (om) om.textContent = formatNum(ollamaData.total_models); }
+            if (ollamaData.total_size_gb != null) { var os = document.getElementById('fleet-ollama-size'); if (os) os.textContent = ollamaData.total_size_gb.toFixed(2) + ' GB'; }
+            var hailoData = ai.hailo || {};
+            if (hailoData.total_tops != null) { var ht = document.getElementById('fleet-hailo'); if (ht) ht.textContent = formatNum(hailoData.total_tops); }
+            if (gitea.repo_count != null) { var gr = document.getElementById('fleet-gitea'); if (gr) gr.textContent = formatNum(gitea.repo_count); }
+
+            // Edge info text
+            var edgeInfo = document.getElementById('fleet-edge-info');
+            if (edgeInfo && data._source) {
+                edgeInfo.textContent = 'Source node: ' + data._source.node + ' | Updated: ' + new Date(data._source.time).toLocaleString();
+            }
 
             // Add live dots to metric cards that have data-live
             document.querySelectorAll('[data-live="true"]').forEach(function(el) {
@@ -753,16 +1013,15 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
-            // Add shimmer to live elements
             var liveEls = ['badge-loc', 'badge-projects', 'metric-loc', 'metric-repos',
-                           'metric-repos-orgs', 'metric-cf-projects', 'demo-repo-counts'];
+                           'metric-repos-orgs', 'metric-cf-projects', 'demo-repo-counts',
+                           'metric-workers', 'metric-hailo', 'metric-ollama', 'metric-dns'];
             liveEls.forEach(function(id) { addShimmer(document.getElementById(id)); });
 
             try {
                 var data = await fetchStats();
                 applyLiveData(data);
             } catch(e) {
-                // Fallback: just remove shimmer, keep hardcoded values
                 liveEls.forEach(function(id) { removeShimmer(document.getElementById(id)); });
                 console.warn('Portfolio stats API unavailable, using fallback values:', e);
             }
