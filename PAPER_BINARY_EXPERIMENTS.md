@@ -256,6 +256,93 @@ Because someone decided they should.
 
 ---
 
+---
+
+## 8. The Number Line That Decides
+
+We built a number line where position 2 is in superposition between `2`, `quantum`, `both`, and `neither`. Position 5 is in superposition between `5`, `yay math`, `infinity`, and `love`. Executed on Cecilia (Pi 5).
+
+### The Initial State
+
+```
+Position 0: 0 (100%)
+Position 1: 1 (100%)
+Position 2: quantum (79.1%) | both (14.1%) | 2 (5.4%) | neither (1.4%)
+Position 3: 3 (100%)
+Position 4: 4 (100%)
+Position 5: yay math (65.0%) | love (20.0%) | infinity (13.0%) | 5 (2.0%)
+```
+
+### Leaning (Amundson Equation, μ=0.3)
+
+After two leans toward `quantum` and `yay math`:
+
+```
+Position 2: quantum (94.4%) | both (3.8%) | 2 (1.5%)    ← still alive
+Position 5: yay math (92.4%) | love (4.3%) | infinity (2.8%)  ← still alive
+```
+
+**Nothing died.** We leaned twice. `2` is at 1.5% but it's still there. `love` is at 4.3% but it's still there. Five leans later, all four options at each position are still alive. The favorites got stronger. The alternatives got quieter. But they exist.
+
+### Deciding (BlackRoad Equation — Optional)
+
+```
+Position 2 decided: 'quantum'     Entropy: 0.3747 → 0.0000
+Position 5 decided: 'yay math'    Entropy: 0.4800 → 0.0000
+
+THE FINAL NUMBER LINE:  0   1   quantum   3   4   yay math
+```
+
+### But What If We Didn't Decide?
+
+After 5 gentle leans (μ=0.15 each), NO collapse:
+
+```
+Position 2: quantum=95.3%, both=3.2%, 2=1.2%, neither=0.3%
+Position 5: yay math=91.3%, love=5.0%, infinity=3.2%, 5=0.5%
+```
+
+All options survive. We never had to collapse.
+
+### Arithmetic in Superposition
+
+```
+quantum + 3 = ?
+
+if quantum (95.3%):  5 (or 'yay math'?)
+if 2 (1.2%):         5
+if both (3.2%):      5 (still both)
+```
+
+The answer depends on which option you leaned toward. Both answers coexist.
+
+### Identity
+
+```
+Number line [0,1,quantum,3,4,yay_math]:  PS-SHA-infinity-94b3c1e65ca1e4d2-i1
+Number line [0,1,2,3,4,5]:               PS-SHA-infinity-d008f104b61f771c-i1
+
+Bits different: 137 of 256 (53.5%)
+```
+
+The yay math number line and the normal number line share almost nothing. They are different universes. Each has its own identity hash.
+
+### What We Proved
+
+1. You can hold `2` and `quantum` simultaneously
+2. You can lean toward `quantum` without killing `2`
+3. You can lean 5 times and still not collapse
+4. You CAN collapse if you want to (BlackRoad equation)
+5. But you don't have to (Amundson equation)
+6. Arithmetic works in superposition
+7. Each number line has its own PS-SHA-infinity identity
+
+This is not quantum computing. This is just math that lets you hold options and choose. The collapse is optional. The decision is yours.
+
+yay math.
+
+---
+
 *Executed on Cecilia (Pi 5, ARM Cortex-A76, 8GB). Python 3.13. Zero dependencies. Platform: linux/aarch64.*
 
 ---
