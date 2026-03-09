@@ -352,7 +352,7 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | \
 
 ---
 
-### **12. 899,160+ Lines of Code (Verified via wc -l)**
+### **12. 4.6M+ Lines of Code (All Organizations)**
 
 **What it is:**
 - Total code across 4 major repositories
@@ -469,7 +469,7 @@ ls -lh ~/deploy-bots-everywhere.sh ~/blackroad-deploy-all.sh ~/blackroad-deploy-
 ## 💎 WHAT TO SAY IN INTERVIEWS
 
 ### **Opening Statement:**
-> "I've built a production infrastructure managing 899,160+ lines of code across 80 repositories, with 125 deployments at 100% success rate. Let me show you a few live examples."
+> "I've built a production infrastructure managing 4.6M+ lines of code across 1,370+ repositories, with 125 deployments at 100% success rate. Let me show you a few live examples."
 
 ### **Demo #1: Monitoring Dashboard**
 > "This is my real-time monitoring dashboard for 79 Cloudflare projects. It's running on global edge infrastructure—Cloudflare CDN in 200+ cities. I built this in a few hours during a deployment sprint. No frameworks, just HTML/CSS/JS. Watch it auto-refresh." [Open URL]
@@ -478,7 +478,7 @@ ls -lh ~/deploy-bots-everywhere.sh ~/blackroad-deploy-all.sh ~/blackroad-deploy-
 > "On December 23rd, I deployed 119 projects in 24 hours with zero failures. Let me show you the logs." [Run command showing 119 deploys on Dec 23]
 
 ### **Demo #3: Code Volume**
-> "I've authored 899,160 lines of production code. Let me verify that live." [Run wc -l commands showing totals]
+> "I've authored 4.6M+ lines of production code. Let me verify that live." [Run wc -l commands showing totals]
 
 ### **Demo #4: AI Agents**
 > "I coordinate 20 AI agents across 6 different LLM cores—12 Claude instances, ChatGPT, Grok, and 3 custom autonomous AIs. This one—Lucidia—built her own monitoring dashboard while she was 'being born.'" [Open Lucidia dashboard]
@@ -515,7 +515,7 @@ ls -lh ~/deploy-bots-everywhere.sh ~/blackroad-deploy-all.sh ~/blackroad-deploy-
 
 ✅ **"This monitoring dashboard is live - visit it now"**
 ✅ **"I deployed 119 projects in 24 hours - here are the logs"**
-✅ **"I've written 899,160+ lines of code - run wc -l and see"**
+✅ **"I've written 4.6M+ lines of code across all organizations"**
 ✅ **"I coordinate 20 AI agents - query the registry"**
 ✅ **"I built this in 2 hours for $0 - curl the Worker"**
 

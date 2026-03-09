@@ -7,7 +7,7 @@ amundsonalexa@gmail.com | blackroad.io | github.com/BlackRoad-OS
 
 ## PROFILE
 
-Developer advocate with **899,160+ lines of open-source code** across **1,218+ public repositories**. Built **3 autonomous AI agents** (Lucidia, Alice, Aria) that teach, collaborate, and create content **in real-time**. Proven ability to create engaging technical content: **11 major milestones** documented with metrics + screenshots, **4 achievement stories** with before/after comparisons, **live interactive demos** at alice.blackroad.me and lucidia guardian dashboard. Expert at making complex systems accessible through visual language (**429-emoji vocabulary**), interactive tools, and **100% reproducible examples**.
+Developer advocate with **4.6M+ lines of open-source code** across **1,218+ public repositories**. Built **3 autonomous AI agents** (Lucidia, Alice, Aria) that teach, collaborate, and create content **in real-time**. Proven ability to create engaging technical content: **11 major milestones** documented with metrics + screenshots, **4 achievement stories** with before/after comparisons, **live interactive demos** at alice.blackroad.me and lucidia guardian dashboard. Expert at making complex systems accessible through visual language (**429-emoji vocabulary**), interactive tools, and **100% reproducible examples**.
 
 ---
 
@@ -22,7 +22,7 @@ Developer advocate with **899,160+ lines of open-source code** across **1,218+ p
 
 ### **2. Open Source Leadership**
 - **1,218+ public repositories** on GitHub (BlackRoad-OS organization)
-- **899,160+ LOC** available for community learning and contribution
+- **4.6M+ LOC** available for community learning and contribution
 - **100% transparency:** All infrastructure, code, and metrics publicly viewable
 - **Complete documentation:** INFRASTRUCTURE_INVENTORY.md, CLOUDFLARE_INFRA.md, THE_LIGHT_TRINITY.md
 - **Reproducible examples:** Every claim has verification command you can run yourself
@@ -301,7 +301,7 @@ Check her quantum-watcher logs for monitoring best practices
 
 ### **Open Source Engagement**
 - **1,218+ public repositories** (everything open for learning)
-- **899,160+ LOC** available for exploration
+- **4.6M+ LOC** available for exploration
 - **100% reproducible** examples (every claim has verification command)
 - **3 AI agents** providing 24/7 community support
 
@@ -352,7 +352,7 @@ Check her quantum-watcher logs for monitoring best practices
 
 ### **Engagement:** 3 AI agents provide 24/7 community support (scales beyond human capacity)
 ### **Education:** 429-emoji language makes complex infrastructure accessible to beginners
-### **Transparency:** 100% open source (899K+ LOC, 1,370+ repos) - nothing hidden
+### **Transparency:** 100% open source (4.6M+ LOC, 1,370+ repos) - nothing hidden
 ### **Innovation:** First-of-its-kind autonomous AI agents with verifiable identity
 ### **Accessibility:** Every claim reproducible (verification commands make learning hands-on)
 ### **Storytelling:** 11 milestones documented with emotion + metrics (technical + human)

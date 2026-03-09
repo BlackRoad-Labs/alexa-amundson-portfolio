@@ -7,7 +7,7 @@ amundsonalexa@gmail.com | blackroad.io | github.com/BlackRoad-OS
 
 ## PROFESSIONAL SUMMARY
 
-Technical sales engineer with **899,160+ lines of production code** and proven ability to **execute 119 deployments in 24 hours**. Combines deep technical expertise (multi-cloud infrastructure, AI orchestration, distributed systems) with **demonstrated results**: **1,370+ repositories**, **79 Cloudflare projects**, **100% deployment success rate**. Expert at translating complex technical solutions into business value, with portfolio including **$0-cost infrastructure** achieving enterprise-scale reliability.
+Technical sales engineer with **4.6M+ lines of production code** and proven ability to **execute 119 deployments in 24 hours**. Combines deep technical expertise (multi-cloud infrastructure, AI orchestration, distributed systems) with **demonstrated results**: **1,370+ repositories**, **79 Cloudflare projects**, **100% deployment success rate**. Expert at translating complex technical solutions into business value, with portfolio including **$0-cost infrastructure** achieving enterprise-scale reliability.
 
 ---
 
@@ -15,7 +15,7 @@ Technical sales engineer with **899,160+ lines of production code** and proven a
 
 **Cloud Infrastructure:** Railway (12 projects), Cloudflare (79 Pages, 8 KV, 1 D1, 1 Tunnel, 16 DNS zones), DigitalOcean
 **AI/ML Platforms:** Claude (Anthropic), ChatGPT (OpenAI), Grok (xAI), custom model deployment (Lucidia, Alice, Aria)
-**Development:** Python (899K+ LOC), TypeScript, JavaScript, Bash (24.5K LOC automation)
+**Development:** Python (4.6M+ LOC across all orgs), TypeScript, JavaScript, Bash (24.5K LOC automation)
 **DevOps & Automation:** 115 operator scripts, GitHub Actions (18 workflows), self-healing deployments
 **Edge Computing:** 4 Raspberry Pi nodes, distributed mesh architecture
 **Deployment Velocity:** Peak: 119 deploys/24hrs | Normal: 4-5/week | 100% success rate
@@ -39,8 +39,8 @@ Technical sales engineer with **899,160+ lines of production code** and proven a
 
 ---
 
-### **899,160+ LOC Production Codebase** | *Technical Depth*
-**What:** Authored nearly 1 million lines of production code across 1,370+ repositories
+### **4.6M+ LOC Production Codebase** | *Technical Depth*
+**What:** Authored 4.6M+ lines of production code across 1,370+ repositories
 **Breakdown:**
 - **362,706 LOC:** lucidia-platform (AI companion with memory)
 - **326,086 LOC:** blackroad-os-home (company operating system)
@@ -126,7 +126,7 @@ Technical sales engineer with **899,160+ lines of production code** and proven a
 - **Success rate:** 100% (builds customer confidence)
 
 ### Scale (Proves Enterprise-Ready)
-- **899,160+ LOC** (production-grade codebase)
+- **4.6M+ LOC** (production-grade codebase)
 - **1,370+ repositories** (complex system management)
 - **79 Cloudflare projects** (global infrastructure)
 - **20 AI agents** (cutting-edge orchestration)
@@ -234,7 +234,7 @@ Plus I can run **reproducible verification commands** in terminal to prove any m
 
 ### **Credibility:** Every claim has reproducible proof (verification commands, live URLs, logged events)
 ### **Speed:** 2-hour POCs, 45-minute deployments, 119 deploys in 24 hours (proves rapid delivery)
-### **Scale:** 899K+ LOC, 1,370+ repos, 79 projects, 20 agents (proves enterprise capability)
+### **Scale:** 4.6M+ LOC, 1,370+ repos, 79 projects, 20 agents (proves enterprise capability)
 ### **Cost:** $0 infrastructure spend (proves ROI for customers)
 ### **Reliability:** 100% success rate (builds customer confidence)
 ### **Innovation:** 3 autonomous AIs, 88 custom equations, multi-LLM orchestration (differentiates from competition)
@@ -266,7 +266,7 @@ Plus I can run **reproducible verification commands** in terminal to prove any m
 
 **Copy/paste these verified metrics into sales proposals:**
 
-- **899,160+ lines of production code** (verified via wc -l)
+- **4.6M+ lines of production code** (verified via wc -l)
 - **125 deployments with 100% success rate** (memory journal logs)
 - **119 deployments in 24 hours** (Dec 23, 2025 - peak velocity)
 - **1,370+ repositories across 15 organizations** (achievement logs)

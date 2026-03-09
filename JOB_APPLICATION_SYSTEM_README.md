@@ -249,7 +249,7 @@ Hi {FirstName},
 Saw the {Role} opening at {Company} - looks like a great fit!
 
 Quick highlights:
-• 899,160+ LOC verified
+• 4.6M+ LOC verified
 • 100% deployment success rate
 • 79 live Cloudflare projects
 

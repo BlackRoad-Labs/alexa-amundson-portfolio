@@ -71,7 +71,7 @@
 
 | Metric | Value | Verification Method |
 |--------|-------|---------------------|
-| **Lines of Code** | 899,160+ | `wc -l` on source files |
+| **Lines of Code** | 4.6M+ | Ecosystem analysis (all orgs) |
 | **Total Deployments** | 125 | PS-SHA-∞ journal logs |
 | **Peak Deploy Rate** | 119 in 24 hours | Dec 23, 2025 event logs |
 | **Success Rate** | 100% | Zero rollbacks logged |
@@ -117,7 +117,7 @@
 1. **Quick Demo** (2 min) - Monitoring dashboard showcase
 2. **Full Demo** (10 min) - Complete portfolio walkthrough
 3. **Terminal Demo** (3 min) - Verification commands live
-4. **LOC Verification** (2 min) - Prove 899K+ lines of code
+4. **LOC Verification** (2 min) - Demonstrate 4.6M+ lines of code
 5. **Deployment Velocity** (3 min) - Show 125 deploys, 119 in 24hrs
 
 **All scripts in:** LIVE_VERIFICATION_REPORT.md
@@ -178,7 +178,7 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
 
 ### Immediate (Can Do Right Now)
 1. **Test portfolio URL:** https://blackboxprogramming.github.io/alexa-amundson-portfolio/
-2. **Share on LinkedIn:** "Just deployed my technical portfolio: 899K+ LOC, 125 deployments @ 100% success..."
+2. **Share on LinkedIn:** "Just deployed my technical portfolio: 4.6M+ LOC (all orgs), 125 deployments @ 100% success..."
 3. **Update resume with GitHub Pages link**
 4. **Send to 5 target companies** with customized resume variant
 

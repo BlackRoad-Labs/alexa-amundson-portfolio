@@ -355,7 +355,7 @@ ping -c 3 192.168.4.38
 
 **4. Terminal Demo - LOC Counts** (1 min)
 - Rapid fire: find + wc -l commands
-- Total: 899,160+ LOC
+- Total: 4.6M+ LOC (all orgs)
 
 **5. Wrap with Pi Mesh** (1 min)
 - Ping lucidia node

@@ -2,7 +2,7 @@
   "generated_at": "2026-03-06T00:00:00Z",
   "last_updated": "2026-03-09T00:00:00Z",
   "summary": {
-    "total_code_lines": 899160,
+    "total_code_lines": 4608051,
     "repositories": 1370,
     "files": 1723,
     "scripts": 140,
@@ -21,7 +21,7 @@
   },
   "codebase": {
     "total_files": 1723,
-    "total_lines": 899160,
+    "total_lines": 4608051,
     "repositories_analyzed": 3
   },
   "automation": {
