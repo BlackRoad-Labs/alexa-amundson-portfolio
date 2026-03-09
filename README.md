@@ -18,6 +18,8 @@ I bring quantitative analysis from regulated finance and production-grade infras
 
 **[Read the full story](THE_STORY.md)** — how I went from coding on an iPhone to 1,326 repos in 9 months, verified from git history.
 
+**[The Code Story (Traced Through Commits)](THE_CODE_STORY.md)** — every failure, every 3am fix, every breakthrough — traced through actual commit messages, timestamps, and `git log`.
+
 ---
 
 ## Cost & Market Analysis
