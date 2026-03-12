@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blackboxprogramming.github.io/sitemap.xml
+
+# Alexa Amundson — Full-Stack Engineer & AI Infrastructure
