@@ -1,5 +1,11 @@
 # Alexa Amundson — Technical Portfolio
 
+[![Portfolio](https://img.shields.io/badge/LOC-899K%2B-FF6B2B.svg)](https://blackboxprogramming.github.io)
+[![Deployments](https://img.shields.io/badge/deployments-125-00D4FF.svg)](https://blackroad.io)
+[![Projects](https://img.shields.io/badge/live_projects-79-CC00AA.svg)](https://blackroad.io)
+
+
+
 **Distributed Systems Engineer & Financial Services Professional**
 
 Lakeville, MN | amundsonalexa@gmail.com | (507) 828-0842 | [blackroad.io](https://blackroad.io) | [GitHub](https://github.com/blackboxprogramming)
