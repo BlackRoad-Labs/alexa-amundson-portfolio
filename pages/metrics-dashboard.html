@@ -205,110 +205,12 @@
             50% { opacity: 0.5; box-shadow: 0 0 5px #00ff00; }
         }
 
-        .live-api-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            margin-left: 6px;
-            vertical-align: middle;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .shimmer-loading {
-            background: linear-gradient(90deg, transparent 25%, rgba(0,255,0,0.1) 50%, transparent 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-
         .footer {
             text-align: center;
             margin-top: 60px;
             padding: 20px;
             border-top: 2px solid #00ff00;
             color: #0a0;
-        }
-
-        .fleet-mesh-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .mesh-node {
-            border: 1px solid #0f0;
-            padding: 15px;
-            text-align: center;
-            background: rgba(0,255,0,0.03);
-        }
-
-        .mesh-node .node-name {
-            font-size: 1.2em;
-            color: #0f0;
-            text-shadow: 0 0 8px #00ff00;
-            margin-bottom: 8px;
-        }
-
-        .mesh-node .node-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            font-size: 0.8em;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-
-        .mesh-node .node-badge.up {
-            background: rgba(0,255,0,0.15);
-            color: #0f0;
-            border: 1px solid #0f0;
-        }
-
-        .mesh-node .node-badge.down {
-            background: rgba(255,0,0,0.15);
-            color: #f44;
-            border: 1px solid #f44;
-        }
-
-        .mesh-node .node-latency {
-            font-size: 0.85em;
-            color: #0a0;
-        }
-
-        .ai-infra-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .ai-infra-card {
-            border: 1px solid #0f0;
-            padding: 20px;
-            background: rgba(0,255,0,0.03);
-        }
-
-        .ai-infra-card h4 {
-            color: #0f0;
-            margin-bottom: 10px;
-        }
-
-        .ai-infra-card .ai-stat {
-            font-size: 2em;
-            color: #0f0;
-            text-shadow: 0 0 10px #00ff00;
-        }
-
-        .ai-infra-card .ai-detail {
-            font-size: 0.9em;
-            color: #0a0;
-            margin-top: 5px;
         }
     </style>
 </head>
@@ -326,7 +228,7 @@
         <!-- Primary Metrics -->
         <div class="stats-grid">
             <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-loc">899,160+</div>
+                <div class="stat-number">899,160+</div>
                 <div class="stat-label">LINES OF CODE</div>
                 <div class="stat-detail">Verified via wc -l</div>
             </div>
@@ -344,13 +246,13 @@
             </div>
 
             <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-repos">113+</div>
+                <div class="stat-number">113+</div>
                 <div class="stat-label">REPOSITORIES</div>
-                <div class="stat-detail" data-live="true" id="md-repos-orgs">15 Organizations</div>
+                <div class="stat-detail">15 Organizations</div>
             </div>
 
             <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-projects">79</div>
+                <div class="stat-number">79</div>
                 <div class="stat-label">LIVE PROJECTS</div>
                 <div class="stat-detail">Cloudflare Pages</div>
             </div>
@@ -371,48 +273,6 @@
                 <div class="stat-number">443</div>
                 <div class="stat-label">EVENT LOGS</div>
                 <div class="stat-detail">PS-SHA-∞ Chain</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-workers" style="font-size: 2.5em;">84</div>
-                <div class="stat-label">WORKERS</div>
-                <div class="stat-detail">Cloudflare Edge</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-kv" style="font-size: 2.5em;">20</div>
-                <div class="stat-label">KV NAMESPACES</div>
-                <div class="stat-detail">Key-Value Store</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-d1" style="font-size: 2.5em;">18</div>
-                <div class="stat-label">D1 DATABASES</div>
-                <div class="stat-detail">SQLite Edge</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-r2" style="font-size: 2.5em;">10</div>
-                <div class="stat-label">R2 BUCKETS</div>
-                <div class="stat-detail">Object Storage</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-dns" style="font-size: 2.5em;">20</div>
-                <div class="stat-label">DNS ZONES</div>
-                <div class="stat-detail">Cloudflare Managed</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-ollama" style="font-size: 2.5em;">32</div>
-                <div class="stat-label">OLLAMA MODELS</div>
-                <div class="stat-detail" id="md-ollama-size">24.69 GB</div>
-            </div>
-
-            <div class="stat-box">
-                <div class="stat-number" data-live="true" id="md-hailo" style="font-size: 2.5em;">52</div>
-                <div class="stat-label">HAILO TOPS</div>
-                <div class="stat-detail">2x Hailo-8 Accelerators</div>
             </div>
         </div>
 
@@ -435,9 +295,9 @@
             </div>
 
             <div style="margin-top: 30px;">
-                <p><strong>Infrastructure Coverage:</strong> <span data-live="true" id="md-infra-count">79</span> Cloudflare Pages</p>
+                <p><strong>Infrastructure Coverage:</strong> 79 Cloudflare Pages</p>
                 <div class="progress-bar">
-                    <div class="progress-fill" id="md-infra-bar" style="width: 79%"><span id="md-infra-bar-text">79 LIVE PROJECTS</span></div>
+                    <div class="progress-fill" style="width: 79%">79 LIVE PROJECTS</div>
                 </div>
             </div>
         </div>
@@ -629,40 +489,6 @@
             </div>
         </div>
 
-        <!-- Fleet Status -->
-        <div class="section" id="md-fleet-section" style="display:none;">
-            <h2>🛰 FLEET STATUS</h2>
-            <p style="margin-bottom: 15px;"><span class="live-indicator"></span> Pi Mesh Network - WireGuard Constellation</p>
-            <div class="fleet-mesh-grid" id="md-fleet-nodes"></div>
-            <p style="margin-top: 10px; font-size: 0.85em; color: #0a0;" id="md-fleet-edge"></p>
-        </div>
-
-        <!-- AI Infrastructure -->
-        <div class="section" id="md-ai-section" style="display:none;">
-            <h2>🧠 AI INFRASTRUCTURE</h2>
-            <div class="ai-infra-grid">
-                <div class="ai-infra-card">
-                    <h4>Ollama LLM Cluster</h4>
-                    <div class="ai-stat" id="md-ai-ollama-count">32</div>
-                    <div class="ai-detail">Models loaded</div>
-                    <div class="ai-detail" id="md-ai-ollama-size">24.69 GB total</div>
-                    <div id="md-ai-ollama-nodes" style="margin-top:10px; font-size:0.85em; color:#0a0;"></div>
-                </div>
-                <div class="ai-infra-card">
-                    <h4>Hailo-8 Accelerators</h4>
-                    <div class="ai-stat" id="md-ai-hailo-tops">52</div>
-                    <div class="ai-detail">TOPS (Tera Operations/s)</div>
-                    <div class="ai-detail" id="md-ai-hailo-count">2 accelerators</div>
-                </div>
-                <div class="ai-infra-card">
-                    <h4>Gitea Self-Hosted</h4>
-                    <div class="ai-stat" id="md-ai-gitea">50</div>
-                    <div class="ai-detail">Repositories</div>
-                    <div class="ai-detail" id="md-ai-gitea-status">Online</div>
-                </div>
-            </div>
-        </div>
-
         <!-- Infrastructure Status -->
         <div class="section">
             <h2>🌐 INFRASTRUCTURE STATUS</h2>
@@ -670,37 +496,37 @@
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-label">Cloudflare Pages</div>
-                    <div class="stat-number" style="font-size: 2em;" data-live="true" id="md-infra-cf">79</div>
+                    <div class="stat-number" style="font-size: 2em;">79</div>
                     <div class="stat-detail"><span class="live-indicator"></span>ALL LIVE</div>
                 </div>
 
                 <div class="stat-box">
                     <div class="stat-label">DNS Zones</div>
-                    <div class="stat-number" style="font-size: 2em;" data-live="true" id="md-infra-dns">20</div>
+                    <div class="stat-number" style="font-size: 2em;">16</div>
                     <div class="stat-detail"><span class="live-indicator"></span>RESOLVING</div>
                 </div>
 
                 <div class="stat-box">
-                    <div class="stat-label">Cloudflare Workers</div>
-                    <div class="stat-number" style="font-size: 2em;" data-live="true" id="md-infra-workers">84</div>
-                    <div class="stat-detail"><span class="live-indicator"></span>EDGE COMPUTE</div>
+                    <div class="stat-label">Railway Projects</div>
+                    <div class="stat-number" style="font-size: 2em;">12</div>
+                    <div class="stat-detail"><span class="live-indicator"></span>ACTIVE</div>
                 </div>
 
                 <div class="stat-box">
                     <div class="stat-label">Raspberry Pi Nodes</div>
-                    <div class="stat-number" style="font-size: 2em;" data-live="true" id="md-infra-pis">3</div>
+                    <div class="stat-number" style="font-size: 2em;">4</div>
                     <div class="stat-detail"><span class="live-indicator"></span>MESH ONLINE</div>
                 </div>
 
                 <div class="stat-box">
-                    <div class="stat-label">Gitea Repos</div>
-                    <div class="stat-number" style="font-size: 2em;" data-live="true" id="md-infra-gitea">50</div>
-                    <div class="stat-detail"><span class="live-indicator"></span>SELF-HOSTED</div>
+                    <div class="stat-label">GitHub Actions</div>
+                    <div class="stat-number" style="font-size: 2em;">18</div>
+                    <div class="stat-detail"><span class="live-indicator"></span>WORKFLOWS</div>
                 </div>
 
                 <div class="stat-box">
                     <div class="stat-label">KV Namespaces</div>
-                    <div class="stat-number" style="font-size: 2em;" data-live="true" id="md-infra-kv">20</div>
+                    <div class="stat-number" style="font-size: 2em;">8</div>
                     <div class="stat-detail"><span class="live-indicator"></span>OPERATIONAL</div>
                 </div>
             </div>
@@ -739,170 +565,6 @@
                 }, 100);
             });
         });
-
-        // Live stats fetching
-        (function() {
-            const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/space';
-            const CACHE_KEY = 'portfolio-space-cache';
-            const CACHE_TTL = 30 * 60 * 1000;
-
-            function formatNum(n) {
-                return Number(n).toLocaleString();
-            }
-
-            function addLiveDot(el) {
-                if (!el || el.querySelector('.live-api-dot')) return;
-                var dot = document.createElement('span');
-                dot.className = 'live-api-dot';
-                dot.title = 'Live from API';
-                el.appendChild(dot);
-            }
-
-            function addShimmer(el) { if (el) el.classList.add('shimmer-loading'); }
-            function removeShimmer(el) { if (el) el.classList.remove('shimmer-loading'); }
-
-            function setVal(id, val, dot) {
-                var el = document.getElementById(id);
-                if (el && val != null) { el.textContent = typeof val === 'number' ? formatNum(val) : val; if (dot) addLiveDot(el); }
-                removeShimmer(el);
-            }
-
-            async function fetchStats() {
-                var cached = sessionStorage.getItem(CACHE_KEY);
-                if (cached) {
-                    try {
-                        var parsed = JSON.parse(cached);
-                        if (Date.now() - parsed._cachedAt < CACHE_TTL) return parsed.data;
-                    } catch(e) {}
-                }
-                var resp = await fetch(API_URL);
-                if (!resp.ok) throw new Error('API returned ' + resp.status);
-                var data = await resp.json();
-                sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, _cachedAt: Date.now() }));
-                return data;
-            }
-
-            function applyLiveData(data) {
-                var t = data.totals || {};
-                var cf = data.cloudflare || {};
-                var fleet = (data.fleet || {}).mesh_latency || {};
-                var ai = data.ai || {};
-                var gitea = data.gitea || {};
-                var edge = data._edge || {};
-                var ollama = ai.ollama || {};
-                var hailo = ai.hailo || {};
-
-                // Primary metrics
-                setVal('md-loc', t.estimated_loc ? formatNum(t.estimated_loc) + '+' : null, true);
-                setVal('md-repos', t.github_repos ? formatNum(t.github_repos) + '+' : null, true);
-                var orgsEl = document.getElementById('md-repos-orgs');
-                if (orgsEl && t.github_orgs) { orgsEl.textContent = t.github_orgs + ' Organizations'; }
-                removeShimmer(orgsEl);
-                setVal('md-projects', t.cloudflare_projects, true);
-
-                // Infra count
-                var el = document.getElementById('md-infra-count');
-                if (el && t.cloudflare_projects) { el.textContent = formatNum(t.cloudflare_projects); }
-                removeShimmer(el);
-
-                var bar = document.getElementById('md-infra-bar');
-                var barText = document.getElementById('md-infra-bar-text');
-                if (bar && t.cloudflare_projects) {
-                    bar.style.width = Math.min(t.cloudflare_projects, 100) + '%';
-                    if (barText) barText.textContent = formatNum(t.cloudflare_projects) + ' LIVE PROJECTS';
-                }
-
-                setVal('md-infra-cf', t.cloudflare_projects, true);
-
-                // New primary stat boxes
-                setVal('md-workers', t.cloudflare_workers, true);
-                setVal('md-kv', t.cloudflare_kv, true);
-                setVal('md-d1', t.cloudflare_d1, true);
-                setVal('md-r2', t.cloudflare_r2, true);
-                setVal('md-dns', t.dns_zones, true);
-                setVal('md-ollama', t.ollama_models, true);
-                setVal('md-hailo', t.hailo_tops, true);
-
-                var ollamaSizeEl = document.getElementById('md-ollama-size');
-                if (ollamaSizeEl && ollama.total_size_gb != null) {
-                    ollamaSizeEl.textContent = ollama.total_size_gb.toFixed(2) + ' GB';
-                }
-
-                // Infrastructure status grid
-                setVal('md-infra-dns', cf.dns_zones || t.dns_zones, false);
-                setVal('md-infra-workers', cf.workers || t.cloudflare_workers, false);
-                setVal('md-infra-pis', t.pi_nodes, false);
-                setVal('md-infra-gitea', gitea.repo_count || t.gitea_repos, false);
-                setVal('md-infra-kv', cf.kv_namespaces || t.cloudflare_kv, false);
-
-                // Fleet section
-                if (Object.keys(fleet).length > 0) {
-                    var fleetSection = document.getElementById('md-fleet-section');
-                    if (fleetSection) fleetSection.style.display = 'block';
-                    var nodesEl = document.getElementById('md-fleet-nodes');
-                    if (nodesEl) {
-                        nodesEl.innerHTML = '';
-                        Object.keys(fleet).forEach(function(name) {
-                            var node = fleet[name];
-                            var div = document.createElement('div');
-                            div.className = 'mesh-node';
-                            var up = node.reachable;
-                            var latency = up && node.latency_ms != null ? node.latency_ms.toFixed(1) + ' ms' : '--';
-                            div.innerHTML = '<div class="node-name">' + name.toUpperCase() + '</div>' +
-                                '<div class="node-badge ' + (up ? 'up' : 'down') + '">' + (up ? 'ONLINE' : 'OFFLINE') + '</div>' +
-                                '<div class="node-latency">' + latency + '</div>';
-                            nodesEl.appendChild(div);
-                        });
-                    }
-                    var edgeEl = document.getElementById('md-fleet-edge');
-                    if (edgeEl && edge.colo) {
-                        edgeEl.textContent = 'Edge: ' + edge.colo + (edge.city ? ' (' + edge.city + ', ' + edge.country + ')' : '');
-                    }
-                }
-
-                // AI Infrastructure section
-                if (ollama.total_models || hailo.total_tops) {
-                    var aiSection = document.getElementById('md-ai-section');
-                    if (aiSection) aiSection.style.display = 'block';
-
-                    setVal('md-ai-ollama-count', ollama.total_models, false);
-                    var aiSizeEl = document.getElementById('md-ai-ollama-size');
-                    if (aiSizeEl && ollama.total_size_gb != null) aiSizeEl.textContent = ollama.total_size_gb.toFixed(2) + ' GB total';
-
-                    var nodesInfo = document.getElementById('md-ai-ollama-nodes');
-                    if (nodesInfo && ollama.nodes) {
-                        var parts = [];
-                        Object.keys(ollama.nodes).forEach(function(n) {
-                            var nd = ollama.nodes[n];
-                            parts.push(n + ': ' + (nd.online ? nd.model_count + ' models' : 'offline'));
-                        });
-                        nodesInfo.textContent = parts.join(' | ');
-                    }
-
-                    setVal('md-ai-hailo-tops', hailo.total_tops, false);
-                    var hailoCountEl = document.getElementById('md-ai-hailo-count');
-                    if (hailoCountEl && hailo.total_accelerators) hailoCountEl.textContent = hailo.total_accelerators + ' accelerators';
-
-                    setVal('md-ai-gitea', gitea.repo_count || t.gitea_repos, false);
-                    var giteaStatusEl = document.getElementById('md-ai-gitea-status');
-                    if (giteaStatusEl) giteaStatusEl.textContent = gitea.online ? 'Online' : 'Offline';
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', async function() {
-                var ids = ['md-loc','md-repos','md-repos-orgs','md-projects','md-infra-count','md-infra-cf',
-                           'md-workers','md-kv','md-d1','md-r2','md-dns','md-ollama','md-hailo'];
-                ids.forEach(function(id) { addShimmer(document.getElementById(id)); });
-
-                try {
-                    var data = await fetchStats();
-                    applyLiveData(data);
-                } catch(e) {
-                    ids.forEach(function(id) { removeShimmer(document.getElementById(id)); });
-                    console.warn('Portfolio stats API unavailable, using fallback values:', e);
-                }
-            });
-        })();
     </script>
 </body>
 </html>

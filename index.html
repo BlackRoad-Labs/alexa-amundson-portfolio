@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexa Louise Amundson - Technical Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="https://images.blackroad.io/brand/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="https://images.blackroad.io/brand/blackroad-icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://images.blackroad.io/brand/apple-touch-icon.png" />
+    <meta property="og:image" content="https://images.blackroad.io/brand/blackroad-icon-512.png" />
     <meta name="description" content="899,160+ LOC | 125 Deployments @ 100% Success | 79 Live Projects | 5 Resume Variants | 100000% Verified">
     <style>
         * {
@@ -52,66 +56,6 @@
             border-radius: 20px;
             font-size: 0.9em;
             backdrop-filter: blur(10px);
-        }
-
-        .live-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            margin-right: 5px;
-            animation: live-pulse 2s infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes live-pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 6px #00ff88; }
-            50% { opacity: 0.4; box-shadow: 0 0 2px #00ff88; }
-        }
-
-        .live-indicator-tag {
-            display: inline-block;
-            font-size: 0.75em;
-            color: #00ff88;
-            margin-left: 8px;
-            vertical-align: middle;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .live-indicator-tag.visible {
-            opacity: 1;
-        }
-
-        .live-section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,255,136,0.1);
-            border: 1px solid rgba(0,255,136,0.3);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            color: #00ff88;
-            margin-left: 10px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .live-section-badge.visible {
-            opacity: 1;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .shimmer-loading {
-            background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.15) 50%, transparent 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
         }
 
         .container {
@@ -314,105 +258,6 @@
             color: #FF0066;
         }
 
-        .fleet-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .fleet-node {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .fleet-node:hover {
-            border-color: #00ff88;
-            box-shadow: 0 0 15px rgba(0,255,136,0.2);
-        }
-
-        .fleet-node .node-name {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #FF9D00;
-            margin-bottom: 8px;
-        }
-
-        .fleet-node .node-status {
-            font-size: 0.85em;
-            padding: 3px 10px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-bottom: 6px;
-        }
-
-        .fleet-node .node-status.online {
-            background: rgba(0,255,0,0.15);
-            color: #00ff88;
-            border: 1px solid rgba(0,255,0,0.3);
-        }
-
-        .fleet-node .node-status.offline {
-            background: rgba(255,0,0,0.15);
-            color: #ff4444;
-            border: 1px solid rgba(255,0,0,0.3);
-        }
-
-        .fleet-node .node-latency {
-            font-size: 0.85em;
-            color: #aaa;
-        }
-
-        .fleet-resources {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .fleet-resource {
-            background: rgba(119,0,255,0.1);
-            border: 1px solid rgba(119,0,255,0.3);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .fleet-resource .res-value {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #0066FF;
-        }
-
-        .fleet-resource .res-label {
-            font-size: 0.8em;
-            color: #999;
-            margin-top: 4px;
-        }
-
-        .edge-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,102,255,0.15);
-            border: 1px solid rgba(0,102,255,0.4);
-            padding: 4px 14px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            color: #4da6ff;
-            margin-left: 10px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .edge-badge.visible {
-            opacity: 1;
-        }
-
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -431,15 +276,16 @@
             }
         }
     </style>
+  <script src="https://blackroad-mesh.amundsonalexa.workers.dev/mesh.js" defer></script>
 </head>
 <body>
     <div class="header">
         <h1>🚀 Alexa Louise Amundson</h1>
         <div class="tagline">Technical Portfolio - 100000% Verified</div>
         <div class="badges">
-            <span class="badge" data-live="true" id="badge-loc">899,160+ Lines of Code</span>
+            <span class="badge">899,160+ Lines of Code</span>
             <span class="badge">125 Deployments @ 100% Success</span>
-            <span class="badge" data-live="true" id="badge-projects">79 Live Projects</span>
+            <span class="badge">79 Live Projects</span>
             <span class="badge">$0/month Infrastructure</span>
         </div>
     </div>
@@ -447,12 +293,12 @@
     <div class="container">
         <!-- Metrics Section -->
         <div class="section">
-            <h2>💎 Verified Metrics <span class="live-section-badge" id="live-badge"><span class="live-dot"></span> Live data</span> <span class="edge-badge" id="edge-badge"></span></h2>
+            <h2>💎 Verified Metrics</h2>
             <p style="margin-bottom: 20px; color: #ccc;">Every number backed by reproducible commands. No estimates, no hallucinations.</p>
 
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-loc">899,160+</div>
+                    <div class="metric-number">899,160+</div>
                     <div class="metric-label">Lines of Code</div>
                     <div class="metric-verify">wc -l verified</div>
                 </div>
@@ -476,13 +322,13 @@
                 </div>
 
                 <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-repos">113+</div>
+                    <div class="metric-number">113+</div>
                     <div class="metric-label">Repositories</div>
-                    <div class="metric-verify" data-live="true" id="metric-repos-orgs">15 GitHub orgs</div>
+                    <div class="metric-verify">15 GitHub orgs</div>
                 </div>
 
                 <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-cf-projects">79</div>
+                    <div class="metric-number">79</div>
                     <div class="metric-label">Cloudflare Projects</div>
                     <div class="metric-verify">Live dashboard</div>
                 </div>
@@ -497,30 +343,6 @@
                     <div class="metric-number">$0</div>
                     <div class="metric-label">Monthly Cost</div>
                     <div class="metric-verify">Cloudflare free tier</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-workers">84</div>
-                    <div class="metric-label">Cloudflare Workers</div>
-                    <div class="metric-verify">Edge compute</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-hailo">52 TOPS</div>
-                    <div class="metric-label">Hailo-8 AI</div>
-                    <div class="metric-verify">2x accelerators</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-ollama">32</div>
-                    <div class="metric-label">Ollama Models</div>
-                    <div class="metric-verify">Local inference</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-number" data-live="true" id="metric-dns">20</div>
-                    <div class="metric-label">DNS Zones</div>
-                    <div class="metric-verify">Cloudflare managed</div>
                 </div>
             </div>
         </div>
@@ -548,69 +370,10 @@
                 <div class="demo-card">
                     <span class="demo-status status-live">✅ LIVE</span>
                     <h3>GitHub Organization</h3>
-                    <p><span data-live="true" id="demo-repo-counts">80+ repositories, 43 public</span>. Complete infrastructure codebase with cryptographic verification.</p>
+                    <p>80+ repositories, 43 public. Complete infrastructure codebase with cryptographic verification.</p>
                     <a href="https://github.com/BlackRoad-OS" target="_blank" class="demo-link">View Repos →</a>
                 </div>
             </div>
-        </div>
-
-        <!-- Infrastructure Fleet Section -->
-        <div class="section" id="fleet-section" style="display:none;">
-            <h2>🛰 Infrastructure Fleet <span class="live-section-badge" id="fleet-live-badge"><span class="live-dot"></span> Live data</span></h2>
-            <p style="margin-bottom: 20px; color: #ccc;">Real-time mesh status from the constellation API.</p>
-
-            <h3 style="color: #FF9D00; margin-bottom: 12px;">Pi Mesh Nodes</h3>
-            <div class="fleet-grid" id="fleet-nodes"></div>
-
-            <h3 style="color: #FF9D00; margin: 20px 0 12px;">Cloudflare Resources</h3>
-            <div class="fleet-resources" id="fleet-cf-resources">
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-workers">84</div>
-                    <div class="res-label">Workers</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-kv">20</div>
-                    <div class="res-label">KV Namespaces</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-d1">18</div>
-                    <div class="res-label">D1 Databases</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-r2">10</div>
-                    <div class="res-label">R2 Buckets</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-domains">130</div>
-                    <div class="res-label">Domains</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-dns">20</div>
-                    <div class="res-label">DNS Zones</div>
-                </div>
-            </div>
-
-            <h3 style="color: #FF9D00; margin: 20px 0 12px;">AI &amp; Edge</h3>
-            <div class="fleet-resources">
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-ollama-models">13</div>
-                    <div class="res-label">Ollama Models</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-ollama-size">24.69 GB</div>
-                    <div class="res-label">Model Size</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-hailo">52</div>
-                    <div class="res-label">Hailo TOPS</div>
-                </div>
-                <div class="fleet-resource">
-                    <div class="res-value" id="fleet-gitea">50</div>
-                    <div class="res-label">Gitea Repos</div>
-                </div>
-            </div>
-
-            <p style="margin-top: 15px; font-size: 0.85em; color: #666;" id="fleet-edge-info"></p>
         </div>
 
         <!-- Resume Variants Section -->
@@ -738,7 +501,7 @@
             <h2>Ready to Connect?</h2>
             <p style="margin-bottom: 30px; font-size: 1.1em;">View the complete portfolio on GitHub or get in touch.</p>
             <a href="https://github.com/blackboxprogramming/alexa-amundson-portfolio" target="_blank" class="cta-button">📁 View on GitHub</a>
-            <a href="mailto:amundsonalexa@gmail.com" class="cta-button">📧 Email Me</a>
+            <a href="mailto:blackroad@gmail.com" class="cta-button">📧 Email Me</a>
         </div>
 
         <!-- Verification Proof -->
@@ -767,12 +530,12 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
     </div>
 
     <div class="footer">
-        <p><strong>Portfolio Generated:</strong> 2025-12-26 | <strong>Last Updated:</strong> 2026-03-06</p>
+        <p><strong>Portfolio Generated:</strong> 2025-12-26</p>
         <p><strong>Verification Level:</strong> 100000% (GOLD STANDARD)</p>
         <p><strong>Signature:</strong> Claude Code - Deep Analysis Engine ✅</p>
         <p style="margin-top: 20px;">
             <a href="https://github.com/BlackRoad-OS">GitHub</a> |
-            <a href="mailto:amundsonalexa@gmail.com">Email</a> |
+            <a href="mailto:blackroad@gmail.com">Email</a> |
             <a href="https://blackroad.io">blackroad.io</a>
         </p>
         <p style="margin-top: 20px; font-size: 0.9em;">
@@ -813,220 +576,6 @@ cat ~/.blackroad/memory/journals/master-journal.jsonl | jq -r 'select(.action=="
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
-    </script>
-
-    <script>
-    (function() {
-        const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/space';
-        const CACHE_KEY = 'portfolio-space-cache';
-        const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
-
-        function formatNum(n) {
-            return Number(n).toLocaleString();
-        }
-
-        function addLiveDot(el) {
-            if (!el || el.querySelector('.live-dot')) return;
-            const dot = document.createElement('span');
-            dot.className = 'live-dot';
-            dot.title = 'Live data';
-            el.prepend(dot);
-        }
-
-        function addShimmer(el) {
-            if (el) el.classList.add('shimmer-loading');
-        }
-
-        function removeShimmer(el) {
-            if (el) el.classList.remove('shimmer-loading');
-        }
-
-        async function fetchStats() {
-            const cached = sessionStorage.getItem(CACHE_KEY);
-            if (cached) {
-                try {
-                    const parsed = JSON.parse(cached);
-                    if (Date.now() - parsed._cachedAt < CACHE_TTL) {
-                        return parsed.data;
-                    }
-                } catch(e) {}
-            }
-
-            const resp = await fetch(API_URL);
-            if (!resp.ok) throw new Error('API returned ' + resp.status);
-            const data = await resp.json();
-
-            sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data, _cachedAt: Date.now() }));
-            return data;
-        }
-
-        function applyLiveData(data) {
-            const t = data.totals || {};
-            const gh = data.github || {};
-            const cf = data.cloudflare || {};
-            const edge = data._edge || {};
-            const fleet = (data.fleet || {}).mesh_latency || {};
-            const ai = data.ai || {};
-            const gitea = data.gitea || {};
-
-            // Badge: LOC
-            const badgeLoc = document.getElementById('badge-loc');
-            if (badgeLoc && t.estimated_loc) {
-                badgeLoc.textContent = formatNum(t.estimated_loc) + '+ Lines of Code';
-                addLiveDot(badgeLoc);
-            }
-            removeShimmer(badgeLoc);
-
-            // Badge: Projects
-            const badgeProj = document.getElementById('badge-projects');
-            if (badgeProj && t.cloudflare_projects) {
-                badgeProj.textContent = formatNum(t.cloudflare_projects) + ' Live Projects';
-                addLiveDot(badgeProj);
-            }
-            removeShimmer(badgeProj);
-
-            // Metric: LOC
-            const metricLoc = document.getElementById('metric-loc');
-            if (metricLoc && t.estimated_loc) {
-                metricLoc.textContent = formatNum(t.estimated_loc) + '+';
-            }
-            removeShimmer(metricLoc);
-
-            // Metric: Repos
-            const metricRepos = document.getElementById('metric-repos');
-            if (metricRepos && t.github_repos) {
-                metricRepos.textContent = formatNum(t.github_repos) + '+';
-            }
-            removeShimmer(metricRepos);
-
-            // Metric: Repos orgs detail
-            const metricOrgs = document.getElementById('metric-repos-orgs');
-            if (metricOrgs && t.github_orgs) {
-                metricOrgs.textContent = t.github_orgs + ' GitHub orgs';
-            }
-            removeShimmer(metricOrgs);
-
-            // Metric: CF Projects
-            const metricCf = document.getElementById('metric-cf-projects');
-            if (metricCf && t.cloudflare_projects) {
-                metricCf.textContent = formatNum(t.cloudflare_projects);
-            }
-            removeShimmer(metricCf);
-
-            // Metric: Workers
-            var el = document.getElementById('metric-workers');
-            if (el && t.cloudflare_workers) { el.textContent = formatNum(t.cloudflare_workers); }
-            removeShimmer(el);
-
-            // Metric: Hailo
-            el = document.getElementById('metric-hailo');
-            if (el && t.hailo_tops) { el.textContent = t.hailo_tops + ' TOPS'; }
-            removeShimmer(el);
-
-            // Metric: Ollama
-            el = document.getElementById('metric-ollama');
-            if (el && t.ollama_models) { el.textContent = formatNum(t.ollama_models); }
-            removeShimmer(el);
-
-            // Metric: DNS
-            el = document.getElementById('metric-dns');
-            if (el && t.dns_zones) { el.textContent = formatNum(t.dns_zones); }
-            removeShimmer(el);
-
-            // Demo card: repo counts
-            const demoRepos = document.getElementById('demo-repo-counts');
-            if (demoRepos && gh.total_repos) {
-                demoRepos.textContent = formatNum(gh.total_repos) + '+ repositories, ' + formatNum(gh.public_repos) + ' public';
-            }
-            removeShimmer(demoRepos);
-
-            // Show live badge
-            const liveBadge = document.getElementById('live-badge');
-            if (liveBadge) liveBadge.classList.add('visible');
-
-            // Edge location badge
-            if (edge.colo) {
-                var edgeBadge = document.getElementById('edge-badge');
-                if (edgeBadge) {
-                    edgeBadge.textContent = 'Connected via ' + edge.colo + (edge.city ? ' (' + edge.city + ')' : '');
-                    edgeBadge.classList.add('visible');
-                }
-            }
-
-            // Fleet section
-            var fleetSection = document.getElementById('fleet-section');
-            if (fleetSection && Object.keys(fleet).length > 0) {
-                fleetSection.style.display = 'block';
-                var nodesContainer = document.getElementById('fleet-nodes');
-                if (nodesContainer) {
-                    nodesContainer.innerHTML = '';
-                    Object.keys(fleet).forEach(function(name) {
-                        var node = fleet[name];
-                        var div = document.createElement('div');
-                        div.className = 'fleet-node';
-                        var statusClass = node.reachable ? 'online' : 'offline';
-                        var statusText = node.reachable ? 'ONLINE' : 'OFFLINE';
-                        var latencyText = node.reachable && node.latency_ms != null ? node.latency_ms.toFixed(1) + ' ms' : '--';
-                        div.innerHTML = '<div class="node-name">' + name + '</div>' +
-                            '<div class="node-status ' + statusClass + '">' + statusText + '</div>' +
-                            '<div class="node-latency">Latency: ' + latencyText + '</div>';
-                        nodesContainer.appendChild(div);
-                    });
-                }
-
-                var fleetBadge = document.getElementById('fleet-live-badge');
-                if (fleetBadge) fleetBadge.classList.add('visible');
-            }
-
-            // Fleet CF resources
-            if (cf.workers != null) { var w = document.getElementById('fleet-workers'); if (w) w.textContent = formatNum(cf.workers); }
-            if (cf.kv_namespaces != null) { var k = document.getElementById('fleet-kv'); if (k) k.textContent = formatNum(cf.kv_namespaces); }
-            if (cf.d1_databases != null) { var d = document.getElementById('fleet-d1'); if (d) d.textContent = formatNum(cf.d1_databases); }
-            if (cf.r2_buckets != null) { var r = document.getElementById('fleet-r2'); if (r) r.textContent = formatNum(cf.r2_buckets); }
-            if (cf.total_domains != null) { var dm = document.getElementById('fleet-domains'); if (dm) dm.textContent = formatNum(cf.total_domains); }
-            if (cf.dns_zones != null) { var dz = document.getElementById('fleet-dns'); if (dz) dz.textContent = formatNum(cf.dns_zones); }
-
-            // Fleet AI & Edge
-            var ollamaData = ai.ollama || {};
-            if (ollamaData.total_models != null) { var om = document.getElementById('fleet-ollama-models'); if (om) om.textContent = formatNum(ollamaData.total_models); }
-            if (ollamaData.total_size_gb != null) { var os = document.getElementById('fleet-ollama-size'); if (os) os.textContent = ollamaData.total_size_gb.toFixed(2) + ' GB'; }
-            var hailoData = ai.hailo || {};
-            if (hailoData.total_tops != null) { var ht = document.getElementById('fleet-hailo'); if (ht) ht.textContent = formatNum(hailoData.total_tops); }
-            if (gitea.repo_count != null) { var gr = document.getElementById('fleet-gitea'); if (gr) gr.textContent = formatNum(gitea.repo_count); }
-
-            // Edge info text
-            var edgeInfo = document.getElementById('fleet-edge-info');
-            if (edgeInfo && data._source) {
-                edgeInfo.textContent = 'Source node: ' + data._source.node + ' | Updated: ' + new Date(data._source.time).toLocaleString();
-            }
-
-            // Add live dots to metric cards that have data-live
-            document.querySelectorAll('[data-live="true"]').forEach(function(el) {
-                var tag = el.querySelector('.live-indicator-tag');
-                if (!tag && el.classList.contains('metric-number')) {
-                    tag = document.createElement('span');
-                    tag.className = 'live-indicator-tag visible';
-                    tag.innerHTML = '<span class="live-dot"></span>';
-                    el.appendChild(tag);
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', async function() {
-            var liveEls = ['badge-loc', 'badge-projects', 'metric-loc', 'metric-repos',
-                           'metric-repos-orgs', 'metric-cf-projects', 'demo-repo-counts',
-                           'metric-workers', 'metric-hailo', 'metric-ollama', 'metric-dns'];
-            liveEls.forEach(function(id) { addShimmer(document.getElementById(id)); });
-
-            try {
-                var data = await fetchStats();
-                applyLiveData(data);
-            } catch(e) {
-                liveEls.forEach(function(id) { removeShimmer(document.getElementById(id)); });
-                console.warn('Portfolio stats API unavailable, using fallback values:', e);
-            }
-        });
-    })();
     </script>
 </body>
 </html>

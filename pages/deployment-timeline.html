@@ -209,61 +209,6 @@
         .success-dot { background: #00ff00; }
         .peak-dot { background: #FF0066; }
         .milestone-dot { background: #FF9D00; }
-
-        .live-stats-footer {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            background: rgba(0,255,136,0.05);
-            border: 1px solid rgba(0,255,136,0.3);
-            border-radius: 10px;
-            padding: 20px 30px;
-            margin: 40px 0;
-        }
-
-        .live-stats-footer .ls-item {
-            text-align: center;
-        }
-
-        .live-stats-footer .ls-value {
-            font-size: 1.8em;
-            color: #00ff88;
-            text-shadow: 0 0 8px rgba(0,255,136,0.4);
-        }
-
-        .live-stats-footer .ls-label {
-            font-size: 0.85em;
-            color: #0a0;
-            margin-top: 4px;
-        }
-
-        .live-dot-small {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            margin-right: 5px;
-            vertical-align: middle;
-            animation: live-pulse 2s infinite;
-        }
-
-        @keyframes live-pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 6px #00ff88; }
-            50% { opacity: 0.4; box-shadow: 0 0 2px #00ff88; }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .shimmer-loading {
-            background: linear-gradient(90deg, transparent 25%, rgba(0,255,136,0.08) 50%, transparent 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
     </style>
 </head>
 <body>
@@ -485,60 +430,6 @@
             </div>
         </div>
 
-        <div class="live-stats-footer" id="dt-live-footer" style="display:none;">
-            <div style="width:100%; text-align:center; margin-bottom:10px; font-size:0.85em; color:#00ff88;">
-                <span class="live-dot-small"></span> FLEET CONSTELLATION (LIVE)
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-repos">--</div>
-                <div class="ls-label">Repositories</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-loc">--</div>
-                <div class="ls-label">Lines of Code</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-projects">--</div>
-                <div class="ls-label">CF Projects</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-workers">--</div>
-                <div class="ls-label">Workers</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-kv">--</div>
-                <div class="ls-label">KV</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-d1">--</div>
-                <div class="ls-label">D1</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-r2">--</div>
-                <div class="ls-label">R2</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-dns">--</div>
-                <div class="ls-label">DNS Zones</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-ollama">--</div>
-                <div class="ls-label">Ollama Models</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-hailo">--</div>
-                <div class="ls-label">Hailo TOPS</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-pis">--</div>
-                <div class="ls-label">Pi Nodes</div>
-            </div>
-            <div class="ls-item">
-                <div class="ls-value" id="dt-live-gitea">--</div>
-                <div class="ls-label">Gitea Repos</div>
-            </div>
-        </div>
-
         <div style="text-align: center; padding: 40px; color: #0a0;">
             <p><strong>DEPLOYMENT TIMELINE</strong></p>
             <p style="margin-top: 10px;">Generated from PS-SHA-∞ memory journal</p>
@@ -551,64 +442,6 @@
 
     <script>
         document.getElementById('timestamp').textContent = new Date().toLocaleString();
-
-        (function() {
-            const API_URL = 'https://portfolio-stats-api.amundsonalexa.workers.dev/space';
-            const CACHE_KEY = 'portfolio-space-cache';
-            const CACHE_TTL = 30 * 60 * 1000;
-
-            function formatNum(n) { return Number(n).toLocaleString(); }
-
-            async function fetchStats() {
-                var cached = sessionStorage.getItem(CACHE_KEY);
-                if (cached) {
-                    try {
-                        var parsed = JSON.parse(cached);
-                        if (Date.now() - parsed._cachedAt < CACHE_TTL) return parsed.data;
-                    } catch(e) {}
-                }
-                var resp = await fetch(API_URL);
-                if (!resp.ok) throw new Error('API returned ' + resp.status);
-                var data = await resp.json();
-                sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, _cachedAt: Date.now() }));
-                return data;
-            }
-
-            function setVal(id, val) {
-                var el = document.getElementById(id);
-                if (el && val != null) el.textContent = typeof val === 'number' ? formatNum(val) : val;
-            }
-
-            document.addEventListener('DOMContentLoaded', async function() {
-                try {
-                    var data = await fetchStats();
-                    var t = data.totals || {};
-                    var cf = data.cloudflare || {};
-                    var ai = data.ai || {};
-                    var gitea = data.gitea || {};
-                    var ollama = ai.ollama || {};
-                    var hailo = ai.hailo || {};
-
-                    setVal('dt-live-repos', formatNum(t.github_repos || 0) + '+');
-                    setVal('dt-live-loc', formatNum(t.estimated_loc || 0) + '+');
-                    setVal('dt-live-projects', t.cloudflare_projects || 0);
-                    setVal('dt-live-workers', cf.workers || t.cloudflare_workers || 0);
-                    setVal('dt-live-kv', cf.kv_namespaces || t.cloudflare_kv || 0);
-                    setVal('dt-live-d1', cf.d1_databases || t.cloudflare_d1 || 0);
-                    setVal('dt-live-r2', cf.r2_buckets || t.cloudflare_r2 || 0);
-                    setVal('dt-live-dns', cf.dns_zones || t.dns_zones || 0);
-                    setVal('dt-live-ollama', ollama.total_models || t.ollama_models || 0);
-                    setVal('dt-live-hailo', (hailo.total_tops || t.hailo_tops || 0) + ' TOPS');
-                    setVal('dt-live-pis', t.pi_nodes || 0);
-                    setVal('dt-live-gitea', gitea.repo_count || t.gitea_repos || 0);
-
-                    document.getElementById('dt-live-footer').style.display = 'flex';
-                    document.getElementById('dt-live-footer').style.flexWrap = 'wrap';
-                } catch(e) {
-                    console.warn('Portfolio stats API unavailable:', e);
-                }
-            });
-        })();
     </script>
 </body>
 </html>
